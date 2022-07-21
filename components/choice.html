@@ -28,7 +28,7 @@
         
         jatos.onLoad(function() {
             // Get activity handles from the component JSON input data and shuffle if needed
-            var acts = [...jatos.componentJsonInput.acts];
+            var acts = Object.keys(jatos.studySessionData["famRuleMapping"]);
             if (jatos.componentJsonInput.shuffle) {
                 acts.sort(() => Math.random() - 0.5)
             };
@@ -47,11 +47,14 @@
 
             // Display number of trials completed
             $("#trial-count").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData['trialsComplete']}`,
+                innerHTML: `Trials completed: ${jatos.studySessionData['freeTrialsComplete']}`,
             })
 
             // Add ABORT button
             jatos.addAbortButton();
+
+
+            console.log(jatos.studySessionData["famRuleMapping"])
         });
       </script>  
 </html>
