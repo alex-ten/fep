@@ -32,6 +32,8 @@
                     "choice":  jatos.studySessionData['choice']
                 };
                 jatos.appendResultData(resultData);
+
+                // If `maxTrials` is reached, end study, else circle back to choice phase
                 if (jatos.studySessionData['trialsComplete'] >= jatos.studyJsonInput['maxTrials']) {
                     jatos.endStudy()
                 } else {

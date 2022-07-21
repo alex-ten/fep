@@ -33,7 +33,7 @@
                 acts.sort(() => Math.random() - 0.5)
             };
 
-            // Create a choice button for each activity, link with a click handler, and append to the `#choice-panel` container
+            // Create a choice button for each activity, hook it up to a click handler, and append to the `#choice-panel` container
             for (let i = 0; i < acts.length; i++) {
                 var btn = $(document.createElement('button')).prop({
                     type: 'button',
@@ -42,7 +42,6 @@
                     class: 'btn-styled'
                 })
                 btn.on('click', execChoice);
-                console.log(btn)
                 $('#choice-panel').append(btn);
             };
 
