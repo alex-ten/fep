@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TITLE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="jatos.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <p id="trial-count">Trials completed: </p>
+        <h1>What does this monster like to eat?</h1>
+        <div class="container" id="stimulus"></div>
+        <div class="container" id="responses">
+            <button value=1>Food A</button>
+            <button value=2>Food B</button>
+        </div>
+    </body>
+
+    <script>
+        jatos.onLoad(function() {
+            // Record participant response (guess), save results, and proceed
+            function registerResponse(){
+                jatos.studySessionData['trialsComplete'] += 1
+                var resultData = {
+                    "trialsComplete": jatos.studySessionData['trialsComplete'], 
+                    "guess": this.value,
+                    "choice":  jatos.studySessionData['choice']
+                };
+                jatos.appendResultData(resultData);
+                if (jatos.studySessionData['trialsComplete'] >= jatos.studyJsonInput['maxTrials']) {
+                    jatos.endStudy()
+                } else {
+                    jatos.startComponentByPos(2)
+                };
+            };
+
+            // Link `registerResponse` function with the click event of all response buttons
+            $("#responses").children().on('click', registerResponse);
+
+            // Display number of trials completed
+            $("#trial-count").prop({
+                innerHTML: `Trials completed: ${jatos.studySessionData['trialsComplete']}`,
+            })
+
+            // Display activity choice
+            $("#stimulus").prop({
+                innerHTML: `You chose activity ${jatos.studySessionData['choice']}`,
+            })
+            
+        });
+        jatos.addAbortButton();
+      </script>
+</html>

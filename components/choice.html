@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TITLE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="jatos.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <p id="trial-count">Trials completed: </p>
+        <h1>Choose activity</h1>
+        <div class="container" id="choice-panel"></div>
+    </body>
+
+    <script>
+        
+        // Observe what P chooses and act accordingly
+        function execChoice(){
+            jatos.studySessionData['choice'] = this.value
+            jatos.startComponentByPos(3);
+        };
+        
+        jatos.onLoad(function() {
+            // Get activity handles from the component JSON input data and shuffle if needed
+            var acts = [...jatos.componentJsonInput.acts];
+            if (jatos.componentJsonInput.shuffle) {
+                acts.sort(() => Math.random() - 0.5)
+            };
+
+            // Create a choice button for each activity, link with a click handler, and append to the `#choice-panel` container
+            for (let i = 0; i < acts.length; i++) {
+                var btn = $(document.createElement('button')).prop({
+                    type: 'button',
+                    innerHTML: `Activitiy ${acts[i]}`,
+                    value: acts[i],
+                    class: 'btn-styled'
+                })
+                btn.on('click', execChoice);
+                console.log(btn)
+                $('#choice-panel').append(btn);
+            };
+
+            // Display number of trials completed
+            $("#trial-count").prop({
+                innerHTML: `Trials completed: ${jatos.studySessionData['trialsComplete']}`,
+            })
+
+            // Add ABORT button
+            jatos.addAbortButton();
+        });
+      </script>  
+</html>
