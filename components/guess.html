@@ -25,16 +25,16 @@
         jatos.onLoad(function() {
             // Record participant response (guess), save results, and proceed
             function registerResponse(){
-                jatos.studySessionData['trialsComplete'] += 1
+                jatos.studySessionData['freeTrialsComplete'] += 1
                 var resultData = {
-                    "trialsComplete": jatos.studySessionData['trialsComplete'], 
+                    "trialsComplete": jatos.studySessionData['freeTrialsComplete'], 
                     "guess": this.value,
                     "choice":  jatos.studySessionData['choice']
                 };
                 jatos.appendResultData(resultData);
 
                 // If `maxTrials` is reached, end study, else circle back to choice phase
-                if (jatos.studySessionData['trialsComplete'] >= jatos.studyJsonInput['maxTrials']) {
+                if (jatos.studySessionData['freeTrialsComplete'] >= jatos.studyJsonInput['maxTrials']) {
                     jatos.endStudy()
                 } else {
                     jatos.startComponentByPos(2)
@@ -46,7 +46,7 @@
 
             // Display number of trials completed
             $("#trial-count").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData['trialsComplete']}`,
+                innerHTML: `Trials completed: ${jatos.studySessionData['freeTrialsComplete']}`,
             })
 
             // Display activity choice
