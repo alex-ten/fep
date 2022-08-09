@@ -1,0 +1,18 @@
+input.choice-input {
+    width: 10em;
+    border: 3px solid rgb(85, 85, 85);
+    border-radius: 6em;
+    padding: 0.5em;
+    margin: 1em;
+}
+input.choice-input:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+input.choice-input--active {
+    width: 10em;
+    border: 3px solid rgb(255, 0, 0);
+    border-radius: 6em;
+    padding: 0.5em;
+    margin: 1em;
+}
