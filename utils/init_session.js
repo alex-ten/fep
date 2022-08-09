@@ -16,7 +16,7 @@ function initSession() {
     ];
 
     // Shuffle one of the arrays
-    actRules.sort(() => Math.random() - 0.5);
+    shuffle(actRules)
 
     // Create a default mapping from anonymous labels of stimulus sets to activity labels (i.e., classification rules)
     let map = {};
