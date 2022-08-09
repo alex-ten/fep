@@ -7,7 +7,7 @@
         <title>TITLE</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="styles/choice.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="utils/randomization.js"></script>
@@ -20,30 +20,44 @@
     </body>
 
     <script>
-        
-        // Observe what P chooses and act accordingly
-        function execChoice(){
-            jatos.studySessionData['choice'] = this.value
-            jatos.startComponentByPos(3);
+
+        // Declare or execute
+        function execChoice() {
+            // Reset siblings' class to choice-input
+            $(this).siblings().each(function(){
+                $(this).removeClass("choice-input--active")
+                $(this).addClass("choice-input")
+            })
+            
+            // Check if user declares or commits to a choice and act accordingly
+            if ($(this).hasClass("choice-input")) {
+                // Add modifier to the class of clicked element
+                $(this).removeClass("choice-input")
+                $(this).addClass("choice-input--active")
+            } else if ($(this).hasClass("choice-input--active")) {
+                // Execite committed choice
+                jatos.studySessionData['choice'] = this.value
+                jatos.startComponentByPos(3);
+            }
         };
         
         jatos.onLoad(function() {
-            // Get activity handles from the component JSON input data and shuffle if needed
-            var acts = Object.keys(jatos.studySessionData["famRuleMapping"]);
-            if (jatos.componentJsonInput.shuffle) {
+            // Get family handles from the component JSON input data and shuffle if needed
+            let acts = Object.keys(jatos.studySessionData["famRuleMapping"]);
+            if (jatos.componentJsonInput.shuffleDisplay) {
                 shuffle(acts)
             };
 
             // Create a choice button for each activity, hook it up to a click handler, and append to the `#choice-panel` container
             for (let i = 0; i < acts.length; i++) {
-                var btn = $(document.createElement('button')).prop({
-                    type: 'button',
-                    innerHTML: `Activitiy ${acts[i]}`,
+                let cbtn = $(document.createElement('input')).prop({
+                    class: 'choice-input',
+                    type: 'image',
+                    src: `assets/stimuli/monsters-preview/f${acts[i]}.png`,
                     value: acts[i],
-                    class: 'btn-styled'
                 })
-                btn.on('click', execChoice);
-                $('#choice-panel').append(btn);
+                cbtn.on('click', execChoice);
+                $('#choice-panel').append(cbtn);
             };
 
             // Display number of trials completed
