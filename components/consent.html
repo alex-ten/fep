@@ -25,11 +25,16 @@
         // Observe what P chooses and act accordingly
         function beginTask(){
             initSession()
+            let initData = {
+                    "famRuleMap": jatos.studySessionData["famRuleMap"],
+                    "famCatMap": jatos.studySessionData["famCatMap"]
+                };
+                jatos.appendResultData(initData);
             jatos.startComponentByPos(2)
         };
         
         jatos.onLoad(function() {
-            $("#begin-button").on('click', beginTask);
+            $("#begin-button").on("click", beginTask);
         });
       </script>  
 </html>
