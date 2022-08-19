@@ -36,14 +36,14 @@
                 $(this).addClass("choice-input--active")
             } else if ($(this).hasClass("choice-input--active")) {
                 // Execite committed choice
-                jatos.studySessionData['choice'] = this.value
+                jatos.studySessionData["choice"] = this.value
                 jatos.startComponentByPos(3);
             }
         };
         
         jatos.onLoad(function() {
             // Get family handles from the component JSON input data and shuffle if needed
-            let acts = Object.keys(jatos.studySessionData["famRuleMapping"]);
+            let acts = Object.keys(jatos.studySessionData["famRuleMap"]);
             if (jatos.componentJsonInput.shuffleDisplay) {
                 shuffle(acts)
             };
@@ -51,8 +51,8 @@
             // Create a choice button for each activity, hook it up to a click handler, and append to the `#choice-panel` container
             for (let i = 0; i < acts.length; i++) {
                 let cbtn = $(document.createElement('input')).prop({
-                    class: 'choice-input',
-                    type: 'image',
+                    class: "choice-input",
+                    type: "image",
                     src: `assets/stimuli/monsters-preview/f${acts[i]}.png`,
                     value: acts[i],
                 })
@@ -62,14 +62,15 @@
 
             // Display number of trials completed
             $("#trial-count").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData['freeTrialsComplete']}`,
+                innerHTML: `Trials completed: ${jatos.studySessionData["freeTrialsComplete"]}`,
             })
 
             // Add ABORT button
             jatos.addAbortButton();
 
 
-            console.log(jatos.studySessionData["famRuleMapping"])
+            console.log(jatos.studySessionData["famRuleMap"])
+            console.log(jatos.studySessionData["famCatMap"])
         });
       </script>  
 </html>
