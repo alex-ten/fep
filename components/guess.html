@@ -7,18 +7,15 @@
         <title>TITLE</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="styles/guess.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     </head>
     <body>
-        <p id="trial-count">Trials completed: </p>
-        <h1>What does this monster like to eat?</h1>
-        <div class="container" id="stimulus"></div>
-        <div class="container" id="responses">
-            <button value=1>Food A</button>
-            <button value=2>Food B</button>
-        </div>
+        <div id="trial-count">Trials completed: </div>
+        <div id="prompt"><h1>What does this monster like to eat?</h1></div>
+        <div id="stimulus"></div>
+        <div id="responses"></div>
     </body>
 
     <script>
@@ -41,18 +38,27 @@
                 };
             };
 
+            // Add stimulus image
+            // Display activity choice
+            const fam = jatos.studySessionData['choice']
+            const features = [1, 1]
+            $("#stimulus").prepend(
+                $("<img>", {
+                    id: `image`,
+                    src: `assets/stimuli/monsters/f${s}_${s}_${s}.png`,
+                })
+            );
+
+            // Add response images
+            
+
             // Link `registerResponse` function with the click event of all response buttons
             $("#responses").children().on('click', registerResponse);
 
             // Display number of trials completed
             $("#trial-count").prop({
                 innerHTML: `Trials completed: ${jatos.studySessionData['freeTrialsComplete']}`,
-            })
-
-            // Display activity choice
-            $("#stimulus").prop({
-                innerHTML: `You chose activity ${jatos.studySessionData['choice']}`,
-            })
+            });
             
         });
         jatos.addAbortButton();
