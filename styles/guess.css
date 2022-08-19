@@ -1,0 +1,14 @@
+div#stimulus{
+    height: 30em;
+    background-color: aqua;
+}
+
+img#image{
+    max-height: 100%
+}
+
+div#responses{
+    height: 10em;
+    background-color: bisque;
+}
+
