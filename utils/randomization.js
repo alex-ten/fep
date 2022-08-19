@@ -10,4 +10,14 @@ function shuffle(array) {
       // let t = array[i]; array[i] = array[j]; array[j] = t
       [array[i], array[j]] = [array[j], array[i]];
     }
-  }
+  };
+
+
+function randInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+// function add a function to output a random label of a stimulus exemplar from a given family (depending on categorization rule)
+function getFeatures() {
+
+};
