@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="styles/guess.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="utils/randomization.js"></script>
+        <script src="utils/stim_gen.js"></script>
     </head>
     <body>
         <div id="trial-count">Trials completed: </div>
@@ -20,10 +22,10 @@
 
     <script>
         jatos.onLoad(function() {
-            // Record participant response (guess), save results, and proceed
             function registerResponse(){
+                // Increment number of free trials complete, make a response record, and save data
                 jatos.studySessionData['freeTrialsComplete'] += 1
-                var resultData = {
+                let resultData = {
                     "trialsComplete": jatos.studySessionData['freeTrialsComplete'], 
                     "guess": this.value,
                     "choice":  jatos.studySessionData['choice']
@@ -38,14 +40,19 @@
                 };
             };
 
+            
+            // Generate stimulus parameters
+            const choiceInd = parseInt(jatos.studySessionData['choice'])
+            const [dimVariance, dimRelevance] = jatos.studySessionData['famRuleMap'][choiceInd]
+            const stimulusFeatures = genStimFeatures(dimVariance)
+            const relevantFeatures = getRelevantFeatures(stimulusFeatures, dimRelevance)
+            const stimulusCategory = getStimCat(relevantFeatures)
+            
             // Add stimulus image
-            // Display activity choice
-            const fam = jatos.studySessionData['choice']
-            const features = [1, 1]
             $("#stimulus").prepend(
                 $("<img>", {
                     id: `image`,
-                    src: `assets/stimuli/monsters/f${s}_${s}_${s}.png`,
+                    src: `assets/stimuli/monsters/f${choiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
                 })
             );
 
