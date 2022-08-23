@@ -10,8 +10,9 @@
         <link rel="stylesheet" href="">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="utils/randomization.js"></script>
-        <script src="utils/init_session.js"></script>
+        <script src="utils/randfuncs.js"></script>
+        <script src="utils/initsess.js"></script>
+        <script src="utils/eventhandlers.js"></script>
     </head>
     <body>
         <p>
@@ -21,7 +22,7 @@
         <button class="btn" id="begin-button">BEGIN</button>
     </body>
 
-    <script>
+    <script>        
         // Observe what P chooses and act accordingly
         function beginTask(){
             initSession()
