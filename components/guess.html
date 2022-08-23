@@ -22,7 +22,8 @@
 
     <script>
         jatos.onLoad(function() {
-            function registerResponse(){
+            function registerResponse(event){
+                alert(`You clicked on ${this.value}, correct response is ${event.data.correct}`)
                 // Increment number of free trials complete, make a response record, and save data
                 jatos.studySessionData['freeTrialsComplete'] += 1
                 let resultData = {
@@ -42,25 +43,38 @@
 
             
             // Generate stimulus parameters
-            const choiceInd = parseInt(jatos.studySessionData['choice'])
-            const [dimVariance, dimRelevance] = jatos.studySessionData['famRuleMap'][choiceInd]
-            const stimulusFeatures = genStimFeatures(dimVariance)
-            const relevantFeatures = getRelevantFeatures(stimulusFeatures, dimRelevance)
-            const stimulusCategory = getStimCat(relevantFeatures)
+            const choiceInd = parseInt(jatos.studySessionData['choice']);
+            const [dimVariance, dimRelevance] = jatos.studySessionData['famRuleMap'][choiceInd];
+            const stimulusFeatures = genStimFeatures(dimVariance);
+            const relevantFeatures = getRelevantFeatures(stimulusFeatures, dimRelevance);
+            const stimulusCategory = getStimCat(relevantFeatures);
             
             // Add stimulus image
             $("#stimulus").prepend(
                 $("<img>", {
-                    id: `image`,
+                    id: "stimulus",
                     src: `assets/stimuli/monsters/f${choiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
                 })
             );
 
             // Add response images
-            
+            const responses = jatos.studySessionData['famCatMap'][choiceInd];
+            const shuffledResponses = shuffle([...responses])
+            const correctResponse = responses[stimulusCategory];
+            for (i = 0; i < responses.length; i++) {
+                $("#responses").prepend(
+                    $("<input>", {
+                        id: "response",
+                        type: "image",
+                        src: `assets/stimuli/food/fi${shuffledResponses[i]}.png`,
+                        value: `${shuffledResponses[i]}`,
+                        alt: "Clickable",
+                    })
+                )
+            };
 
             // Link `registerResponse` function with the click event of all response buttons
-            $("#responses").children().on('click', registerResponse);
+            $("#responses").children().on('click', {correct: correctResponse}, registerResponse);
 
             // Display number of trials completed
             $("#trial-count").prop({
