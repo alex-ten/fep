@@ -1,3 +1,18 @@
+// Initialize categorization rule 1D
+function init1d1() {
+    let dimensions = shuffle([randInt(6) + 1, null])
+    let relevant = [false, false]
+    relevant[dimensions.indexOf(null)] = 1
+    return [dimensions, relevant]
+}
+
+
+// Initialize categorization rule i1D
+function init2d1() {
+    return [[null, null], shuffle([false, true])]
+}
+
+
 function initSession() {
     // Create a list of coded labels for each stimulus family
     let famCodes = [
@@ -22,17 +37,13 @@ function initSession() {
 
 
     // Create a list of labels for each categorization rule (i.e., each activity)
+    // Create instructions for activity rules
     let actRules = [
-        "1d1", // 1 variable dimension; 1 relevant
-        "2d1", // 2 variable dimensions; 1 relevant
-        "2d2", // 2 variable dimensions; 2 relevant
-        "2d0"  // 2 variable dumensions; 0 relevant
+        init1d1(),              // 1 variable dimension; 1 relevant
+        init2d1(),              // 2 variable dimensions; 1 relevant
+        [[null, null], [1, 1]],   // 2 variable dimensions; 2 relevant
+        [[null, null], [0, 0]]    // 2 variable dumensions; 0 relevant
     ];
-
-    // Randomly sample and fix the fixed dimension in 1d1 rule
-    jatos.studySessionData["fixedDim"] = randInt(6) + 1
-    
-    // Randomly determine which dimension is relevant in 2d1 rule
 
 
     // Shuffle one of the arrays
