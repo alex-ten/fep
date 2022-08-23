@@ -1,9 +1,9 @@
 // Generate stimulus features based on array that specifies whether a dimension is variable or fixed at a given value
 function genStimFeatures(dimVariance) {
-    let features  = []
+    let features  = [...dimVariance]
     for (let i = 0; i < dimVariance.length; i++) {
         if (dimVariance[i] === null) {
-            features.push(randInt(6) + 1)
+            features[i] = randInt(6) + 1
         };
     }
     return features
