@@ -1,14 +1,83 @@
-div#stimulus{
-    height: 30em;
-    background-color: aqua;
+div#mask {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100; /* some high z-index */
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+    user-select: none; /* prevents double clicking from highlighting entire page */
+  }
+
+div#grid {
+    display: grid;
+    height: 90vh; /* vh = percentage of viewport height */
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 5% 10% 60% 25%;
 }
 
-img#stimulus{
-    max-height: 100%
+div#trial-count {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    display: flex;
+    justify-content: right;
 }
 
-div#responses{
-    height: 10em;
-    background-color: bisque;
+div#prompt {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    display: flex;
+    justify-content: center;
 }
 
+div#stimulus-flex-row {
+    display: flex;
+    justify-content: center;
+    grid-row-start: 3;
+    grid-column-start: 2;
+}
+
+div.side-block {
+    display: flex;
+    max-height: 30%;
+    justify-content: right;
+    margin-top: 5%;
+}
+
+img#correct-image {
+    display: none;
+    position: absolute;
+    opacity: 0;
+}
+
+img#incorrect-image {
+    display: none;
+    position: absolute;
+    opacity: 0;
+}
+
+img#stimulus {
+    max-height: 100%;
+}
+
+div#responses {
+    grid-row-start: 4;
+    grid-column-start: 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+input.response {
+    max-height: 100%;
+    max-width: 20%;
+    border: 3px solid rgb(85, 85, 85);
+    border-radius: 6em;
+    padding: 0.5em;
+    margin: 1em;
+}
+
+
+input.response:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

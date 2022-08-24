@@ -12,36 +12,28 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="utils/randfuncs.js"></script>
         <script src="utils/stimgen.js"></script>
+        <script src="utils/eventhandlers.js"></script>
     </head>
     <body>
-        <div id="trial-count">Trials completed: </div>
-        <div id="prompt"><h1>What does this monster like to eat?</h1></div>
-        <div id="stimulus"></div>
-        <div id="responses"></div>
+        <div id="grid">
+            <div id="trial-count"><p>Trials completed: </div>
+            <div id="prompt"><h1>What does this monster like to eat?</h1></div>
+            <div id="stimulus-flex-row">
+                <div class="side-block" id="feedback-block">
+                    <img id="correct-image" src="assets/stimuli/feedback/yum.png">
+                    <img id="incorrect-image" src="assets/stimuli/feedback/yuck.png">
+                </div>
+                <div class="side-block" id="empty-block"></div>
+            </div>
+            <div id="responses"></div>
+        </div>
+        <audio id="correct-sound" src="assets/stimuli/feedback/mmm.mp3" type="audio/mp3"></audio>
+        <audio id="incorrect-sound" src="assets/stimuli/feedback/raspberry_grosser.mp3" type="audio/mp3"></audio>
+        <div id="mask"></div>
     </body>
 
     <script>
         jatos.onLoad(function() {
-            function registerResponse(event){
-                alert(`You clicked on ${this.value}, correct response is ${event.data.correct}`)
-                // Increment number of free trials complete, make a response record, and save data
-                jatos.studySessionData['freeTrialsComplete'] += 1
-                let resultData = {
-                    "trialsComplete": jatos.studySessionData['freeTrialsComplete'], 
-                    "guess": this.value,
-                    "choice":  jatos.studySessionData['choice']
-                };
-                jatos.appendResultData(resultData);
-
-                // If `maxTrials` is reached, end study, else circle back to choice phase
-                if (jatos.studySessionData['freeTrialsComplete'] >= jatos.studyJsonInput['maxTrials']) {
-                    jatos.endStudy()
-                } else {
-                    jatos.startComponentByPos(2)
-                };
-            };
-
-            
             // Generate stimulus parameters
             const choiceInd = parseInt(jatos.studySessionData['choice']);
             const [dimVariance, dimRelevance] = jatos.studySessionData['famRuleMap'][choiceInd];
@@ -50,7 +42,7 @@
             const stimulusCategory = getStimCat(relevantFeatures);
             
             // Add stimulus image
-            $("#stimulus").prepend(
+            $("#feedback-block").after(
                 $("<img>", {
                     id: "stimulus",
                     src: `assets/stimuli/monsters/f${choiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
@@ -64,7 +56,7 @@
             for (i = 0; i < responses.length; i++) {
                 $("#responses").prepend(
                     $("<input>", {
-                        id: "response",
+                        class: "response",
                         type: "image",
                         src: `assets/stimuli/food/fi${shuffledResponses[i]}.png`,
                         value: `${shuffledResponses[i]}`,
