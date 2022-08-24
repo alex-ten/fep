@@ -11,6 +11,7 @@
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="utils/randfuncs.js"></script>
+        <script src="utils/eventhandlers.js"></script>
     </head>
 
     <body>
@@ -20,27 +21,6 @@
     </body>
 
     <script>
-
-        // Declare or execute
-        function execChoice() {
-            // Reset siblings' class to choice-input
-            $(this).siblings().each(function(){
-                $(this).removeClass("choice-input--active")
-                $(this).addClass("choice-input")
-            })
-            
-            // Check if user declares or commits to a choice and act accordingly
-            if ($(this).hasClass("choice-input")) {
-                // Add modifier to the class of clicked element
-                $(this).removeClass("choice-input")
-                $(this).addClass("choice-input--active")
-            } else if ($(this).hasClass("choice-input--active")) {
-                // Execite committed choice
-                jatos.studySessionData["choice"] = this.value
-                jatos.startComponentByPos(3);
-            }
-        };
-        
         jatos.onLoad(function() {
             // Get family handles from the component JSON input data and shuffle if needed
             let acts = Object.keys(jatos.studySessionData["famRuleMap"]);
@@ -67,7 +47,6 @@
 
             // Add ABORT button
             jatos.addAbortButton();
-
 
             console.log(jatos.studySessionData["famRuleMap"])
             console.log(jatos.studySessionData["famCatMap"])
