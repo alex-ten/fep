@@ -2,14 +2,14 @@
 function init1d1() {
     let dimensions = shuffle([randInt(6) + 1, null])
     let relevant = [false, false]
-    relevant[dimensions.indexOf(null)] = 1
-    return [dimensions, relevant]
+    relevant[dimensions.indexOf(null)] = true
+    return [dimensions, relevant, '1d1']
 }
 
 
 // Initialize categorization rule i1D
 function init2d1() {
-    return [[null, null], shuffle([false, true])]
+    return [[null, null], shuffle([false, true]), '2d1']
 }
 
 
@@ -39,10 +39,10 @@ function initSession() {
     // Create a list of labels for each categorization rule (i.e., each activity)
     // Create instructions for activity rules
     let actRules = [
-        init1d1(),              // 1 variable dimension; 1 relevant
-        init2d1(),              // 2 variable dimensions; 1 relevant
-        [[null, null], [1, 1]],   // 2 variable dimensions; 2 relevant
-        [[null, null], [0, 0]]    // 2 variable dumensions; 0 relevant
+        init1d1(),                      // 1 variable dimension; 1 relevant
+        init2d1(),                      // 2 variable dimensions; 1 relevant
+        [[null, null], [true, true], '2d2'],   // 2 variable dimensions; 2 relevant
+        [[null, null], [false, false], '2d0']  // 2 variable dumensions; 0 relevant
     ];
 
 
