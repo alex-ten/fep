@@ -41,8 +41,10 @@ function promiseFeedback(correct){
 }
 
 async function registerResponse(event) {
-    const correct = this.value == event.data.correct
-    
+    console.log(this.value)
+    console.log(event.data.correctResponse)
+    const correct = this.value == event.data.correctResponse
+
     // Wait until feedback is presented and audio track stops playing
     resolvedPromise = await promiseFeedback(correct)
 
@@ -50,7 +52,11 @@ async function registerResponse(event) {
     jatos.studySessionData['freeTrialsComplete'] += 1
     let resultData = {
         "trialsComplete": jatos.studySessionData['freeTrialsComplete'],
-        "choice":  jatos.studySessionData['choice'],
+        "famInd":  event.data.famChoiceInd,
+        "features": event.data.stimFeatures,
+        "rule": event.data.ruleLabel,
+        "responseOrder": event.data.responseOrder,
+        "correctResponse": event.data.correctResponse,
         "guess": this.value,
         "correct": correct,
         

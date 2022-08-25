@@ -34,23 +34,29 @@
 
     <script>
         jatos.onLoad(function() {
+            // Display number of trials completed
+            $("#tcount").prop({
+                innerHTML: `Trials completed: ${jatos.studySessionData['freeTrialsComplete']}`,
+            });
+            
             // Generate stimulus parameters
-            const choiceInd = parseInt(jatos.studySessionData['choice']);
-            const [dimVariance, dimRelevance] = jatos.studySessionData['famRuleMap'][choiceInd];
+            const famChoiceInd = parseInt(jatos.studySessionData['choice']);
+            const [dimVariance, dimRelevance, ruleLabel] = jatos.studySessionData['famRuleMap'][famChoiceInd];
             const stimulusFeatures = genStimFeatures(dimVariance);
             const relevantFeatures = getRelevantFeatures(stimulusFeatures, dimRelevance);
-            const stimulusCategory = getStimCat(relevantFeatures);
+            const stimulusCategory = getStimCat(relevantFeatures); // Either 0 or 1, depending on the rule and relevant features
+            const stimulusRule = dimRelevance
             
             // Add stimulus image
             $("#feedback-block").after(
                 $("<img>", {
                     id: "stimulus",
-                    src: `assets/stimuli/monsters/f${choiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
+                    src: `assets/stimuli/monsters/f${famChoiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
                 })
             );
 
             // Add response images
-            const responses = jatos.studySessionData['famCatMap'][choiceInd];
+            const responses = jatos.studySessionData['famCatMap'][famChoiceInd];
             const shuffledResponses = shuffle([...responses])
             const correctResponse = responses[stimulusCategory];
             for (i = 0; i < responses.length; i++) {
@@ -66,13 +72,16 @@
             };
 
             // Link `registerResponse` function with the click event of all response buttons
-            $("#responses").children().on('click', {correct: correctResponse}, registerResponse);
+            data = {
+                correctResponse: correctResponse,
+                famChoiceInd: famChoiceInd,
+                stimFeatures: stimulusFeatures,
+                ruleLabel: ruleLabel,
+                responseOrder: shuffledResponses,
 
-            // Display number of trials completed
-            $("#tcount").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData['freeTrialsComplete']}`,
-            });
-            
+            }
+            $("#responses").children().on('click', data, registerResponse);
+
         });
         jatos.addAbortButton();
       </script>
