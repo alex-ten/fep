@@ -1,3 +1,8 @@
+* {
+    border: 1px dashed red;
+    font-family: sans-serif;
+}
+
 div#mask {
     display: none;
     position: fixed;
@@ -17,7 +22,7 @@ div#grid {
     grid-template-rows: 5% 10% 60% 25%;
 }
 
-div#trial-count {
+div#tcount {
     grid-row-start: 1;
     grid-column-start: 2;
     display: flex;
@@ -36,6 +41,7 @@ div#stimulus-flex-row {
     justify-content: center;
     grid-row-start: 3;
     grid-column-start: 2;
+    margin-bottom: 3%;
 }
 
 div.side-block {
@@ -65,16 +71,17 @@ div#responses {
     grid-row-start: 4;
     grid-column-start: 2;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 input.response {
-    max-height: 100%;
-    max-width: 20%;
+    max-height: 50%;
+    aspect-ratio: 1 / 1;
     border: 3px solid rgb(85, 85, 85);
-    border-radius: 6em;
-    padding: 0.5em;
-    margin: 1em;
+    border-radius: 50%;
+    padding: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 
