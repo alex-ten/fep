@@ -18,7 +18,10 @@ function xnor(x, y) {
     return(x && y) || (! x && ! y);
 }
 
-// Get stimulus category based on the values of relevant features
+// Get stimulus category (0 or 1) based on the values of relevant features
+// if relDims is [], stimulus cateogry is determined randomly
+// if relDims is [v], stimulus category is 1 if the v < 3
+// if relDims is [v, w], stimulus category is 1 if (v < 3 AND w < 3) OR (v > 3 AND w > 3)
 function getStimCat(relDims) {
     if (relDims.length === 0) { // R rule: category is random
         return randInt(2);
