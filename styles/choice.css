@@ -1,18 +1,67 @@
-input.choice-input {
-    width: 10em;
-    border: 3px solid rgb(85, 85, 85);
-    border-radius: 6em;
-    padding: 0.5em;
-    margin: 1em;
+* {
+    /* border: 1px solid black */
+    font-family: sans-serif;
 }
-input.choice-input:hover {
+
+div#grid {
+    display: grid;
+    height: 90vh; /* vh = percentage of viewport height */
+    grid-template-rows: 5% 10% 70% auto;
+    position: relative;
+}
+
+div#tcount {
+    grid-row-start: 1;
+    display: flex;
+    justify-content: right;
+}
+
+div#prompt {
+    grid-row-start: 2;
+    display: flex;
+    justify-content: center;
+}
+
+div#menu-container {
+    grid-row-start: 3;
+    display: flex;
+    justify-content: center;
+}
+
+div#menu-square {
+    display: block;
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+input.option {
+    width: 20%;
+    aspect-ratio: 1 / 1;
+    border: 3px solid rgb(85, 85, 85);
+    border-radius: 100%;
+    padding: 1%;
+    position: absolute;
+}
+input.option:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-input.choice-input--active {
-    width: 10em;
-    border: 3px solid rgb(255, 0, 0);
-    border-radius: 6em;
-    padding: 0.5em;
-    margin: 1em;
+input.option--active {
+    width: 20%;
+    border: 5px solid rgb(255, 0, 0);
+    border-radius: 100%;
+    padding: 1%;;
+    position: absolute;
+}
+
+
+#center {
+    display: none; /* change to block to reveal*/
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #000;
 }

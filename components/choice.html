@@ -12,12 +12,19 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="utils/randfuncs.js"></script>
         <script src="utils/eventhandlers.js"></script>
+        <script src="utils/circle-layout.js"></script>
     </head>
 
     <body>
-        <p id="trial-count">Trials completed: </p>
-        <h1>Choose activity</h1>
-        <div class="container" id="choice-panel"></div>
+        <div id="grid">
+            <div id="tcount">Trials completed: </div>
+            <div id="prompt"><h1>Choose activity</h1></div>
+            <div id="menu-container">
+                <div id="menu-square">
+                    <div id="center"></div>
+                </div>
+            </div>
+        </div>
     </body>
 
     <script>
@@ -31,25 +38,25 @@
             // Create a choice button for each activity, hook it up to a click handler, and append to the `#choice-panel` container
             for (let i = 0; i < acts.length; i++) {
                 let cbtn = $(document.createElement('input')).prop({
-                    class: "choice-input",
+                    class: "option",
                     type: "image",
                     src: `assets/stimuli/monsters-preview/f${acts[i]}.png`,
                     value: acts[i],
                 })
                 cbtn.on('click', execChoice);
-                $('#choice-panel').append(cbtn);
+                $('#menu-square').append(cbtn);
             };
+            
+            // Arranges choices available in a circular layout
+            distributeChoices();
 
             // Display number of trials completed
-            $("#trial-count").prop({
+            $("#tcount").prop({
                 innerHTML: `Trials completed: ${jatos.studySessionData["freeTrialsComplete"]}`,
             })
 
             // Add ABORT button
             jatos.addAbortButton();
-
-            console.log(jatos.studySessionData["famRuleMap"])
-            console.log(jatos.studySessionData["famCatMap"])
         });
       </script>  
 </html>

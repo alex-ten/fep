@@ -10,18 +10,18 @@ function beginTask(){
 
 
 function execChoice() {
-    // Reset siblings' class to choice-input
+    // Reset siblings' class to option
     $(this).siblings().each(function(){
-        $(this).removeClass("choice-input--active")
-        $(this).addClass("choice-input")
+        $(this).removeClass("option--active")
+        $(this).addClass("option")
     })
     
     // Check if user declares or commits to a choice and act accordingly
-    if ($(this).hasClass("choice-input")) {
+    if ($(this).hasClass("option")) {
         // Add modifier to the class of clicked element
-        $(this).removeClass("choice-input")
-        $(this).addClass("choice-input--active")
-    } else if ($(this).hasClass("choice-input--active")) {
+        $(this).removeClass("option")
+        $(this).addClass("option--active")
+    } else if ($(this).hasClass("option--active")) {
         // Execite committed choice
         jatos.studySessionData["choice"] = this.value
         jatos.startComponentByPos(3);
