@@ -63,6 +63,11 @@ function initSession() {
     });
     jatos.studySessionData["famCatMap"] = famCatMap;
 
+    if ("practice" in jatos.studyJsonInput["stages"] && jatos.studyJsonInput["stages"]['practice'] > 0) {
+        let practiceOrder = shuffle([...famCodes])
+        jatos.studySessionData["practiceOrder"] = practiceOrder
+    }
+
     // Set the number of (free) trials complete to 0 in the beginning of session
     jatos.studySessionData["freeTrialsComplete"] = 0
 }
