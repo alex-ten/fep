@@ -4,15 +4,17 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>TITLE</title>
+        <title>MeMo-JATOS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles/guess.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="utils/randfuncs.js"></script>
+        <script src="utils/init.js"></script>
         <script src="utils/stimgen.js"></script>
         <script src="utils/eventhandlers.js"></script>
+        <script src="utils/misc.js"></script>
     </head>
     <body>
         <div id="grid">
@@ -36,16 +38,16 @@
         jatos.onLoad(function() {
             // Display number of trials completed
             $("#tcount").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData['freeTrialsComplete']}`,
+                innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
             });
             
             // Generate stimulus parameters
-            const famChoiceInd = parseInt(jatos.studySessionData['choice']);
-            const [dimVariance, dimRelevance, ruleLabel] = jatos.studySessionData['famRuleMap'][famChoiceInd];
+            const famChoiceInd = parseInt(jatos.studySessionData.choice);
+            const [dimVariance, dimRelevance, ruleLabel] = jatos.studySessionData.famRuleMap[famChoiceInd];
             const stimulusFeatures = genStimFeatures(dimVariance);
             const relevantFeatures = getRelevantFeatures(stimulusFeatures, dimRelevance);
             const stimulusCategory = getStimCat(relevantFeatures); // Either 0 or 1, depending on the rule and relevant features
-            const stimulusRule = dimRelevance
+            const stimulusRule = dimRelevance;
             
             // Add stimulus image
             $("#feedback-block").after(
@@ -56,8 +58,8 @@
             );
 
             // Add response images
-            const responses = jatos.studySessionData['famCatMap'][famChoiceInd];
-            const shuffledResponses = shuffle([...responses])
+            const responses = jatos.studySessionData.famCatMap[famChoiceInd];
+            const shuffledResponses = shuffle([...responses]);
             const correctResponse = responses[stimulusCategory];
             for (i = 0; i < responses.length; i++) {
                 $("#responses").prepend(
@@ -81,7 +83,7 @@
 
             }
             $("#responses").children().on('click', data, registerResponse)
-
+            
             // Add abort button
             addCustomAbortButton()
         })

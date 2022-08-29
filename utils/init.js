@@ -6,12 +6,34 @@ function init1d1() {
     return [dimensions, relevant, '1d1']
 }
 
-
 // Initialize categorization rule i1D
 function init2d1() {
     return [[null, null], shuffle([false, true]), '2d1']
 }
 
+function initSchedule(blockSize, maxTrials, actsOrder, shuffleOrder) {
+    let p = shuffleOrder === 1 ? shuffle(actsOrder) : actsOrder
+    const s = [];
+    if ((shuffleOrder === 2) && (blockSize === 1)) {
+        for (let i = 0; i <= maxTrials + (maxTrials % p.length); i += p.length) {
+            let ii = i % p.length
+            s.push(...shuffle(p.slice(ii, ii + p.length)))
+        }
+        return s.slice(0, maxTrials);
+    }
+    for (let i = 0; i <  Math.floor(maxTrials / blockSize); i++) {
+        let ii = i % p.length;
+        let block = [];
+        for (let j = 0; j < blockSize; j++) {
+            block.push(p[ii])
+        }
+        s.push(...block)
+    }
+    for (let i = 0; i < maxTrials % blockSize; i++) {
+        s.push(p[1])
+    }
+    return s;
+}
 
 function initSession() {
     // Create a list of coded labels for each stimulus family
@@ -23,28 +45,23 @@ function initSession() {
     ];
 
     // Create a list of codes for category labels (just numbers from 0 to 17)
-    let catCodes = [...Array(18).keys()]
-    console.log(catCodes)
+    let catCodes = [...Array(18).keys()];
 
     // Randomly sample unique and nonoverlapping category sets for each stimulus family
     shuffle(catCodes)
-    let k = 2
-    let catSets = []
+    let k = 2;
+    let catSets = [];
     for (let i = 0; i < k *famCodes.length; i += k) {
         catSets.push([catCodes[i], catCodes[i+1]])
     };
-    console.log(catSets)
 
-
-    // Create a list of labels for each categorization rule (i.e., each activity)
     // Create instructions for activity rules
     let actRules = [
-        init1d1(),                      // 1 variable dimension; 1 relevant
-        init2d1(),                      // 2 variable dimensions; 1 relevant
-        [[null, null], [true, true], '2d2'],   // 2 variable dimensions; 2 relevant
-        [[null, null], [false, false], '2d0']  // 2 variable dumensions; 0 relevant
+        init1d1(),                              // 1 variable dimension; 1 relevant
+        init2d1(),                              // 2 variable dimensions; 1 relevant
+        [[null, null], [true, true], '2d2'],    // 2 variable dimensions; 2 relevant
+        [[null, null], [false, false], '2d0']   // 2 variable dumensions; 0 relevant
     ];
-
 
     // Shuffle one of the arrays
     shuffle(actRules)
@@ -52,22 +69,45 @@ function initSession() {
     // Create a mapping from stimulus family labels to activity labels
     let famRuleMap = {};
     famCodes.forEach((element, index) => {
-        famRuleMap[element] = actRules[index];
+        famRuleMap[element] = actRules[index]
     });
-    jatos.studySessionData["famRuleMap"] = famRuleMap;
+    jatos.studySessionData["famRuleMap"] = famRuleMap
 
     // Create a mapping from stimulus family labels to the respective category sets
     let famCatMap = {};
     famCodes.forEach((element, index) => {
         famCatMap[element] = catSets[index]
     });
-    jatos.studySessionData["famCatMap"] = famCatMap;
+    jatos.studySessionData["famCatMap"] = famCatMap
 
-    if ("practice" in jatos.studyJsonInput["stages"] && jatos.studyJsonInput["stages"]['practice'] > 0) {
-        let practiceOrder = shuffle([...famCodes])
-        jatos.studySessionData["practiceOrder"] = practiceOrder
+    jatos.studySessionData["taskStack"] = [...jatos.studyJsonInput.taskStack]
+    jatos.studySessionData["totalTrialsComplete"] = 0
+}
+
+function initNextStage() {
+    jatos.studySessionData["currentStage"] = jatos.studySessionData.taskStack.shift()
+    jatos.studySessionData["stageTrialsComplete"] = 0
+
+    const sp = jatos.studySessionData.currentStage.scheduleParams;
+    if (sp !== null) {
+        jatos.studySessionData["schedule"] = initSchedule(
+            blockSize = sp.blockSize,
+            maxTrials = jatos.studySessionData.currentStage.maxTrials,
+            actsOrder = sp.actsOrder,
+            shuffleOrder = sp.shuffleOrder
+        )
+    } else {
+        jatos.studySessionData["schedule"] = null
     }
+}
 
-    // Set the number of (free) trials complete to 0 in the beginning of session
-    jatos.studySessionData["freeTrialsComplete"] = 0
+// Redirect to the choice component if no schedule is set for the current stage or \
+// redirect to the guess component if forced schedule exists
+function initTrial() {
+    if (jatos.studySessionData.schedule !== null) {
+        jatos.studySessionData["choice"] = jatos.studySessionData.schedule.shift() // forced choice from schedule
+        jatos.startComponentByPos(3)
+    } else {
+        jatos.startComponentByPos(2)
+    }
 }

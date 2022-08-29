@@ -1,13 +1,17 @@
-function beginTask(){
+function beginTask() {
     initSession()       // Defined in initsess.js
     let initData = {
-            "famRuleMap": jatos.studySessionData["famRuleMap"],
-            "famCatMap": jatos.studySessionData["famCatMap"]
-        };
-        jatos.appendResultData(initData);
-    jatos.startComponentByPos(2)
-};
-
+        "famRuleMap": jatos.studySessionData.famRuleMap,
+        "famCatMap": jatos.studySessionData.famCatMap
+    }
+    jatos.appendResultData(initData)
+    if (jatos.studySessionData.taskStack.length) {
+        initNextStage()
+        initTrial()
+    } else {
+        jatos.endStudy()
+    }
+}
 
 function execChoice() {
     // Reset siblings' class to option
@@ -26,7 +30,7 @@ function execChoice() {
         jatos.studySessionData["choice"] = this.value
         jatos.startComponentByPos(3);
     }
-};
+}
 
 // Return a Promise that executes feedback presentation and resolve it only when audio stops playing
 function promiseFeedback(correct){
@@ -41,32 +45,47 @@ function promiseFeedback(correct){
 }
 
 async function registerResponse(event) {
-    console.log(this.value)
-    console.log(event.data.correctResponse)
-    const correct = this.value == event.data.correctResponse
+    jatos.studySessionData.stageTrialsComplete += 1
+    $("#tcount").prop({
+        innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
+    });
 
-    // Wait until feedback is presented and audio track stops playing
-    resolvedPromise = await promiseFeedback(correct)
+    const correct = this.value == event.data.correctResponse;
+
+    if (jatos.studySessionData.currentStage.feedback) {
+        // Wait until feedback is presented and audio track stops playing
+        await promiseFeedback(correct)
+    }
 
     // Increment number of free trials complete, make a response record, and save data
-    jatos.studySessionData['freeTrialsComplete'] += 1
+    
     let resultData = {
-        "trialsComplete": jatos.studySessionData['freeTrialsComplete'],
+        "stage": jatos.studySessionData.currentStage.name,
+        "feedbackOn": jatos.studySessionData.currentStage.feedback,
+        "trialsComplete": jatos.studySessionData.stageTrialsComplete,
         "famInd":  event.data.famChoiceInd,
         "features": event.data.stimFeatures,
         "rule": event.data.ruleLabel,
         "responseOrder": event.data.responseOrder,
         "correctResponse": event.data.correctResponse,
         "guess": this.value,
-        "correct": correct,
-        
+        "correct": correct
+        // reaction time  
     };
     jatos.appendResultData(resultData);
 
-    // If `maxTrials` is reached, end study, else circle back to choice phase
-    if (jatos.studySessionData['freeTrialsComplete'] >= jatos.studyJsonInput['maxTrials']) {
-        jatos.endStudy()
+    // If `maxTrials` of the current stage is reached, either
+    // (1) Initialize and start next stage, or
+    // (2) End study
+    if (jatos.studySessionData.stageTrialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
+        if (jatos.studySessionData.taskStack.length) {
+            initNextStage()
+            initTrial()
+        } else {
+            jatos.endStudy()
+        }
+    // Otherwise, initialize new trial
     } else {
-        jatos.startComponentByPos(2)
+        initTrial()
     }
-};
+}

@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>TITLE</title>
+        <title>MeMo-JATOS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles/choice.css">
@@ -13,6 +13,7 @@
         <script src="utils/randfuncs.js"></script>
         <script src="utils/eventhandlers.js"></script>
         <script src="utils/circle-layout.js"></script>
+        <script src="utils/misc.js"></script>
     </head>
 
     <body>
@@ -52,7 +53,7 @@
 
             // Display number of trials completed
             $("#tcount").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData["freeTrialsComplete"]}`,
+                innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
             })
 
             // Add abort button
