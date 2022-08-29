@@ -80,9 +80,10 @@
                 responseOrder: shuffledResponses,
 
             }
-            $("#responses").children().on('click', data, registerResponse);
+            $("#responses").children().on('click', data, registerResponse)
 
-        });
-        jatos.addAbortButton();
+            // Add abort button
+            addCustomAbortButton()
+        })
       </script>
 </html>
