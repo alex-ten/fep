@@ -28,7 +28,9 @@ function execChoice() {
     } else if ($(this).hasClass("option--active")) {
         // Execite committed choice
         jatos.studySessionData["choice"] = this.value
-        jatos.startComponentByPos(4);
+        jatos.startComponentByPos(
+            getComponentPos(jatos.studySessionData.currentStage.component)
+        );
     }
 }
 

@@ -106,7 +106,9 @@ function initNextStage() {
 function initTrial() {
     if (jatos.studySessionData.schedule !== null) {
         jatos.studySessionData["choice"] = jatos.studySessionData.schedule.shift() // forced choice from schedule
-        jatos.startComponentByPos(4)
+        jatos.startComponentByPos(
+            getComponentPos(jatos.studySessionData.currentStage.component)
+        );
     } else {
         jatos.startComponentByPos(2)
     }

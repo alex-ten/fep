@@ -5,6 +5,10 @@ function incrementStageTrialCount() {
     });
 }
 
+function getComponentPos(name) {
+    return jatos.studyJsonInput.compNamePosMap[name]
+}
+
 function addCustomAbortButton() {
     jatos.addAbortButton({
         text: "Terminate",
