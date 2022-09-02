@@ -74,15 +74,7 @@ async function registerResponse(event) {
     };
     jatos.appendResultData(resultData);
 
-    // If `maxTrials` of the current stage is reached, either
-    // (1) Initialize and start next stage, or
-    // (2) End study
-    if (jatos.studySessionData.stageTrialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
-        if (jatos.studySessionData.taskStack.length) {
-            initNextStage()
-            initTrial()
-        } else {
-            jatos.endStudy()
+    nextTrialOrStage();
         }
     // Otherwise, initialize new trial
     } else {

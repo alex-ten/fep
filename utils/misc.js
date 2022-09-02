@@ -1,3 +1,10 @@
+function incrementStageTrialCount() {
+        jatos.studySessionData.stageTrialsComplete += 1
+    $("#tcount").prop({
+        innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
+    });
+}
+
 function addCustomAbortButton() {
     jatos.addAbortButton({
         text: "Terminate",
