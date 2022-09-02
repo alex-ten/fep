@@ -65,26 +65,5 @@ img#incorrect-image {
 
 img#stimulus {
     max-height: 100%;
-}
-
-div#responses {
-    grid-row-start: 4;
-    grid-column-start: 2;
-    display: flex;
-    justify-content: center;
-}
-
-input.response {
-    max-height: 50%;
-    aspect-ratio: 1 / 1;
-    border: 3px solid rgb(85, 85, 85);
-    border-radius: 50%;
-    padding: 2%;
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-
-input.response:hover {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 5%;
 }

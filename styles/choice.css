@@ -49,7 +49,7 @@ input.option:hover {
 
 input.option--active {
     width: 20%;
-    border: 5px solid rgb(255, 0, 0);
+    border: 5px solid #4CAF50;
     border-radius: 100%;
     padding: 1%;;
     position: absolute;
