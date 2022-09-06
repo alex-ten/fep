@@ -1,0 +1,1054 @@
+/*
+ * Base structure
+ */
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+.gray-light {
+  color: #aaa;
+}
+.lightgrayBackground {
+  background: lightgray;
+}
+.noWrap {
+  white-space: nowrap;
+}
+.text-l {
+  font-size: 125%;
+}
+.text-xl {
+  font-size: 150%;
+}
+.clipboardButton,
+.qrCodeButton,
+.showAllButton {
+  margin: 0 0 0 5px;
+}
+.popover {
+  max-width: 100%;
+}
+.hideKeepWidth {
+  visibility: hidden;
+  height: 0;
+}
+/*
+ * Glyphicons
+ */
+@media screen and (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+.clipboardButton,
+.qrCodeButton,
+.showAllButton {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.clipboardButton:focus,
+.clipboardButton.focus,
+.qrCodeButton:focus,
+.qrCodeButton.focus,
+.showAllButton:focus,
+.showAllButton.focus {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.clipboardButton:hover,
+.qrCodeButton:hover,
+.showAllButton:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.clipboardButton:active,
+.clipboardButton.active,
+.open > .dropdown-toggle.clipboardButton,
+.qrCodeButton:active,
+.qrCodeButton.active,
+.open > .dropdown-toggle.qrCodeButton,
+.showAllButton:active,
+.showAllButton.active,
+.open > .dropdown-toggle.showAllButton {
+  color: #333;
+  background-color: #e6e6e6;
+  background-image: none;
+  border-color: #adadad;
+}
+.clipboardButton:active:hover,
+.clipboardButton.active:hover,
+.open > .dropdown-toggle.clipboardButton:hover,
+.clipboardButton:active:focus,
+.clipboardButton.active:focus,
+.open > .dropdown-toggle.clipboardButton:focus,
+.clipboardButton:active.focus,
+.clipboardButton.active.focus,
+.open > .dropdown-toggle.clipboardButton.focus,
+.qrCodeButton:active:hover,
+.qrCodeButton.active:hover,
+.open > .dropdown-toggle.qrCodeButton:hover,
+.qrCodeButton:active:focus,
+.qrCodeButton.active:focus,
+.open > .dropdown-toggle.qrCodeButton:focus,
+.qrCodeButton:active.focus,
+.qrCodeButton.active.focus,
+.open > .dropdown-toggle.qrCodeButton.focus,
+.showAllButton:active:hover,
+.showAllButton.active:hover,
+.open > .dropdown-toggle.showAllButton:hover,
+.showAllButton:active:focus,
+.showAllButton.active:focus,
+.open > .dropdown-toggle.showAllButton:focus,
+.showAllButton:active.focus,
+.showAllButton.active.focus,
+.open > .dropdown-toggle.showAllButton.focus {
+  color: #333;
+  background-color: #d4d4d4;
+  border-color: #8c8c8c;
+}
+.clipboardButton.disabled:hover,
+.clipboardButton[disabled]:hover,
+fieldset[disabled] .clipboardButton:hover,
+.clipboardButton.disabled:focus,
+.clipboardButton[disabled]:focus,
+fieldset[disabled] .clipboardButton:focus,
+.clipboardButton.disabled.focus,
+.clipboardButton[disabled].focus,
+fieldset[disabled] .clipboardButton.focus,
+.qrCodeButton.disabled:hover,
+.qrCodeButton[disabled]:hover,
+fieldset[disabled] .qrCodeButton:hover,
+.qrCodeButton.disabled:focus,
+.qrCodeButton[disabled]:focus,
+fieldset[disabled] .qrCodeButton:focus,
+.qrCodeButton.disabled.focus,
+.qrCodeButton[disabled].focus,
+fieldset[disabled] .qrCodeButton.focus,
+.showAllButton.disabled:hover,
+.showAllButton[disabled]:hover,
+fieldset[disabled] .showAllButton:hover,
+.showAllButton.disabled:focus,
+.showAllButton[disabled]:focus,
+fieldset[disabled] .showAllButton:focus,
+.showAllButton.disabled.focus,
+.showAllButton[disabled].focus,
+fieldset[disabled] .showAllButton.focus {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.clipboardButton .badge,
+.qrCodeButton .badge,
+.showAllButton .badge {
+  color: #fff;
+  background-color: #333;
+}
+.btn-study {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.btn-study:focus,
+.btn-study.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-study:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-study:active,
+.btn-study.active,
+.open > .dropdown-toggle.btn-study {
+  color: #fff;
+  background-color: #286090;
+  background-image: none;
+  border-color: #204d74;
+}
+.btn-study:active:hover,
+.btn-study.active:hover,
+.open > .dropdown-toggle.btn-study:hover,
+.btn-study:active:focus,
+.btn-study.active:focus,
+.open > .dropdown-toggle.btn-study:focus,
+.btn-study:active.focus,
+.btn-study.active.focus,
+.open > .dropdown-toggle.btn-study.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.btn-study.disabled:hover,
+.btn-study[disabled]:hover,
+fieldset[disabled] .btn-study:hover,
+.btn-study.disabled:focus,
+.btn-study[disabled]:focus,
+fieldset[disabled] .btn-study:focus,
+.btn-study.disabled.focus,
+.btn-study[disabled].focus,
+fieldset[disabled] .btn-study.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.btn-study .badge {
+  color: #337ab7;
+  background-color: #fff;
+}
+.btn-batch {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-batch:focus,
+.btn-batch.focus {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #255625;
+}
+.btn-batch:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.btn-batch:active,
+.btn-batch.active,
+.open > .dropdown-toggle.btn-batch {
+  color: #fff;
+  background-color: #449d44;
+  background-image: none;
+  border-color: #398439;
+}
+.btn-batch:active:hover,
+.btn-batch.active:hover,
+.open > .dropdown-toggle.btn-batch:hover,
+.btn-batch:active:focus,
+.btn-batch.active:focus,
+.open > .dropdown-toggle.btn-batch:focus,
+.btn-batch:active.focus,
+.btn-batch.active.focus,
+.open > .dropdown-toggle.btn-batch.focus {
+  color: #fff;
+  background-color: #398439;
+  border-color: #255625;
+}
+.btn-batch.disabled:hover,
+.btn-batch[disabled]:hover,
+fieldset[disabled] .btn-batch:hover,
+.btn-batch.disabled:focus,
+.btn-batch[disabled]:focus,
+fieldset[disabled] .btn-batch:focus,
+.btn-batch.disabled.focus,
+.btn-batch[disabled].focus,
+fieldset[disabled] .btn-batch.focus {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-batch .badge {
+  color: #5cb85c;
+  background-color: #fff;
+}
+.btn-component {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.btn-component:focus,
+.btn-component.focus {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #1b6d85;
+}
+.btn-component:hover {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.btn-component:active,
+.btn-component.active,
+.open > .dropdown-toggle.btn-component {
+  color: #fff;
+  background-color: #31b0d5;
+  background-image: none;
+  border-color: #269abc;
+}
+.btn-component:active:hover,
+.btn-component.active:hover,
+.open > .dropdown-toggle.btn-component:hover,
+.btn-component:active:focus,
+.btn-component.active:focus,
+.open > .dropdown-toggle.btn-component:focus,
+.btn-component:active.focus,
+.btn-component.active.focus,
+.open > .dropdown-toggle.btn-component.focus {
+  color: #fff;
+  background-color: #269abc;
+  border-color: #1b6d85;
+}
+.btn-component.disabled:hover,
+.btn-component[disabled]:hover,
+fieldset[disabled] .btn-component:hover,
+.btn-component.disabled:focus,
+.btn-component[disabled]:focus,
+fieldset[disabled] .btn-component:focus,
+.btn-component.disabled.focus,
+.btn-component[disabled].focus,
+fieldset[disabled] .btn-component.focus {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.btn-component .badge {
+  color: #5bc0de;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 767px) {
+}
+.glyphicon-general-multiple:before {
+  content: "\002a";
+}
+.glyphicon-general-single:before {
+  content: "\e001";
+}
+.glyphicon-personal-single:before {
+  content: "\e103";
+}
+.glyphicon-jatos:before {
+  content: "\e136";
+}
+.glyphicon-personal-multiple:before {
+  content: "\e200";
+}
+.glyphicon-mturk-sandbox:before,
+.glyphicon-mturk:before {
+  content: "\e215";
+}
+.glyphicon-jatos {
+  color: #ffcc00;
+}
+.glyphicon-personal-single {
+  color: #00e600;
+}
+.glyphicon-personal-multiple {
+  color: #004d00;
+}
+.glyphicon-mturk-sandbox {
+  color: #ff55ff;
+}
+.glyphicon-general-single {
+  color: #f32222;
+}
+.glyphicon-general-multiple {
+  color: #830000;
+}
+.glyphicon-mturk {
+  color: #af00ef;
+}
+.glyphicon-plus.study-collapsed {
+  display: inline;
+}
+.glyphicon-plus.study-expanded {
+  display: none;
+}
+.glyphicon-minus.study-expanded {
+  display: inline;
+}
+.glyphicon-minus.study-collapsed {
+  display: none;
+}
+.glyphicon-none:before {
+  content: "\2122";
+  color: transparent !important;
+}
+/*
+ * Alerts
+ */
+.alert .glyphicon {
+  display: table-cell;
+}
+.alert div,
+.alert span {
+  padding-left: 5px;
+  display: table-cell;
+}
+/*
+ * Global add-ons
+ */
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+#navUserText {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*
+ * Sidebar
+ */
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  margin-top: 20px;
+  margin-right: 2px;
+  padding: 0;
+  list-style: none;
+}
+.sidebar-nav li.studyListItem {
+  padding: 10px;
+}
+.sidebar-nav li.currentStudy {
+  background-color: #fff;
+}
+.sidebar-nav li.studyListItem:hover,
+.sidebar-nav li.studyListItem:focus {
+  background-color: #fff;
+  cursor: pointer;
+}
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+/*
+ * Sidebar navigation
+ */
+.nav-sidebar {
+  margin-right: -21px;
+  /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+/*
+ * Main content
+ */
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+.top-buffer {
+  margin-top: 10px;
+}
+.grayout {
+  opacity: 0.5 !important;
+  /* Real browsers */
+  filter: alpha(opacity=50) !important;
+  /* MSIE */
+}
+/*
+ * Bootstrap modal
+ */
+.modal {
+  overflow-y: auto;
+}
+/*
+ * Define Bootstrap Modal XL
+ */
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+    max-width: 1200px;
+  }
+  .modal-xxl {
+    width: 90%;
+    max-width: 1500px;
+  }
+}
+/*
+ * ACE editor and Bootstrap modals: stop jumping to the top with
+ * https://stackoverflow.com/questions/43738707
+ */
+.ace_text-input {
+  position: absolute!important;
+}
+/*
+ * Fix for Bootstrap 3 radio and checkbox alignment
+ * https://stackoverflow.com/questions/24398901
+ */
+@media (min-width: 768px) {
+  .form-horizontal .radio input[type="radio"],
+  .form-horizontal .checkbox input[type="checkbox"] {
+    float: left;
+    margin: 0 5px 0 5px;
+    margin-left: -20px;
+  }
+}
+/*
+ * General Datatables stuff
+ */
+table.dataTable {
+  margin-top: 30px !important;
+}
+/* Hide default sorting icon and use our own */
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc_disabled:before {
+  right: 0 !important;
+  content: "" !important;
+}
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+  right: 0 !important;
+  content: "" !important;
+}
+table.dataTable thead th {
+  position: relative;
+  background-image: none !important;
+  white-space: nowrap;
+}
+table.dataTable thead th.sorting .sortLogo,
+table.dataTable thead th.sorting_asc .sortLogo,
+table.dataTable thead th.sorting_desc .sortLogo {
+  font-family: 'Glyphicons Halflings' !important;
+}
+table.dataTable thead th.sorting .sortLogo:after {
+  content: "\e150" !important;
+}
+table.dataTable thead th.sorting_asc .sortLogo:after {
+  content: "\e155" !important;
+}
+table.dataTable thead th.sorting_desc .sortLogo:after {
+  content: "\e156" !important;
+}
+table.dataTable tbody tr.selected {
+  color: black !important;
+  background-color: #aaa !important;
+}
+table.dataTable tbody tr.selected a {
+  color: white;
+}
+table.dataTable tbody > tr > td {
+  vertical-align: middle;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a:hover {
+  color: black;
+  background-color: #aaa;
+}
+/*
+ * Dynamic resizing of jumbotrons
+ */
+.jumbotron {
+  overflow: auto;
+}
+/*
+ * Study description
+ */
+#studyDescription {
+  max-height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+#studyDescription .showAll {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 50px 0 5px 0;
+}
+.gradient {
+  /* "transparent" only works here because == rgba(0,0,0,0) */
+  background-image: linear-gradient(to bottom, transparent, white);
+}
+/* Dragging */
+.dragButton {
+  cursor: move;
+}
+/*
+ * Define study and component button colors
+ */
+/*
+ * No wrapping in button group
+ */
+.noWrapBtnGroup {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  user-select: none;
+}
+/*
+ * Component table
+ */
+#componentsTable tbody > tr > td.activeComponent {
+  text-align: center;
+  user-select: none;
+}
+#componentsTable tbody > tr > td.componentDragButton {
+  text-align: center;
+  user-select: none;
+}
+/* Hide sort arrows */
+#componentsTable > thead > tr > th[class*='sort']:before,
+#componentsTable > thead > tr > th[class*='sort']:after {
+  content: '' !important;
+}
+/*
+ * Change user members DataTable
+ */
+#memberUserTable {
+  width: 100%;
+}
+#memberUserTable .memberInStudyColumn {
+  width: 1px;
+}
+/*
+ * Study log
+ */
+#studyLogModal .modal-body p {
+  padding-top: 20px;
+  padding-bottom: 0px;
+}
+/*
+ * Define admin button
+ */
+.btn-admin {
+  color: #ffffff;
+  background-color: #b17632;
+  border-color: #8e5e28;
+}
+.btn-admin:hover,
+.btn-admin:focus,
+.btn-admin:active,
+.btn-admin.active,
+.open .dropdown-toggle.btn-admin {
+  color: #ffffff;
+  background-color: #996529;
+  border-color: #8e5e28;
+}
+.btn-admin:active,
+.btn-admin.active,
+.open .dropdown-toggle.btn-admin {
+  background-image: none;
+}
+.btn-admin.disabled,
+.btn-admin[disabled],
+fieldset[disabled] .btn-admin,
+.btn-admin.disabled:hover,
+.btn-admin[disabled]:hover,
+fieldset[disabled] .btn-admin:hover,
+.btn-admin.disabled:focus,
+.btn-admin[disabled]:focus,
+fieldset[disabled] .btn-admin:focus,
+.btn-admin.disabled:active,
+.btn-admin[disabled]:active,
+fieldset[disabled] .btn-admin:active,
+.btn-admin.disabled.active,
+.btn-admin[disabled].active,
+fieldset[disabled] .btn-admin.active {
+  background-color: #b17632;
+  border-color: #8e5e28;
+}
+.btn-admin .badge {
+  color: #b17632;
+  background-color: #ffffff;
+}
+/*
+ * No wrapping in button group
+ */
+.userBtnGroup {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  user-select: none;
+}
+#systemInfoModal .modal-body p {
+  overflow-wrap: break-word;
+}
+#createUserModal .passwordRepeat,
+#changePasswordModal .newPasswordRepeat {
+  margin-top: 2px;
+}
+/*
+ * DataTables
+ */
+.table tbody > tr > td.adminRole {
+  text-align: center;
+  user-select: none;
+}
+#adminToolbar,
+#createUserButton {
+  margin-bottom: 20px;
+}
+#userTable_wrapper div.dataTables_filter,
+#studyAdminTable_wrapper div.dataTables_filter {
+  display: inline-block;
+  float: right;
+}
+#userTable_wrapper div.dataTables_length,
+#studyAdminTable_wrapper div.dataTables_length {
+  display: inline-block;
+}
+#userTable_wrapper .pagination > li.active > a,
+#studyAdminTable_wrapper .pagination > li.active > a {
+  color: #ffffff;
+  background-color: #b17632;
+  border-color: #9d692c;
+}
+#userTable_wrapper .pagination > li.active > a:hover,
+#studyAdminTable_wrapper .pagination > li.active > a:hover {
+  background-color: #895b27;
+}
+#userTable_wrapper .pagination > li > a,
+#studyAdminTable_wrapper .pagination > li > a {
+  color: #333;
+  background-color: #fff;
+  border-color: #cccccc;
+}
+#userTable_wrapper .pagination > li:not(.disabled):not(.active) > a:hover,
+#studyAdminTable_wrapper .pagination > li:not(.disabled):not(.active) > a:hover {
+  background-color: #e6e6e6;
+}
+#userTable_wrapper .pagination > li.disabled > a,
+#studyAdminTable_wrapper .pagination > li.disabled > a {
+  color: #666666;
+}
+#userTable_wrapper .pagination > li.next > a,
+#studyAdminTable_wrapper .pagination > li.next > a {
+  margin-right: 10px;
+}
+#userTable_wrapper tr.info td {
+  background-color: #f5f5f5;
+}
+/*
+ * Batch buttons use bootstrap success button
+ */
+/*
+ * Define worker button
+ */
+.btn-worker {
+  color: #ffffff;
+  background-color: #97cd47;
+  border-color: #89c339;
+}
+.btn-worker:hover,
+.btn-worker:focus,
+.btn-worker:active,
+.btn-worker.active,
+.open .dropdown-toggle.btn-worker {
+  color: #ffffff;
+  background-color: #79A339;
+  border-color: #89c339;
+}
+.btn-worker:active,
+.btn-worker.active,
+.open .dropdown-toggle.btn-worker {
+  background-image: none;
+}
+.btn-worker.disabled,
+.btn-worker[disabled],
+fieldset[disabled] .btn-worker,
+.btn-worker.disabled:hover,
+.btn-worker[disabled]:hover,
+fieldset[disabled] .btn-worker:hover,
+.btn-worker.disabled:focus,
+.btn-worker[disabled]:focus,
+fieldset[disabled] .btn-worker:focus,
+.btn-worker.disabled:active,
+.btn-worker[disabled]:active,
+fieldset[disabled] .btn-worker:active,
+.btn-worker.disabled.active,
+.btn-worker[disabled].active,
+fieldset[disabled] .btn-worker.active {
+  background-color: #97cd47;
+  border-color: #89c339;
+}
+.btn-worker .badge {
+  color: #97cd47;
+  background-color: #ffffff;
+}
+#batchTable .studyLinksSetupItem .activeTypeButton {
+  margin-right: 10px;
+}
+#batchTable .studyLinksSetupItem {
+  margin: 10px;
+}
+#batchTable .studyLinksSetupItem .panel > .panel-heading {
+  overflow: hidden;
+  line-height: 32px;
+  background-image: none;
+  background-color: #fff;
+}
+#batchTable .studyLinksSetupItem .panel > .panel-heading:hover {
+  background-color: #f0f0f0 !important;
+}
+/*
+ * Badges
+ */
+#allWorkersButton .badge {
+  color: #97cd47;
+  background-color: #ffffff;
+}
+#batchTable .batchResultsBadge {
+  color: #5cb85c;
+  background-color: #fff;
+}
+#batchTable .groupsBadge {
+  color: #5cb85c;
+  background-color: #fff;
+}
+#batchTable .batchStudyLinksBadge {
+  color: #5cb85c;
+  background-color: #fff;
+}
+#batchTable .workerResultsBadge {
+  color: #97cd47;
+  background-color: #ffffff;
+}
+#batchTable .studyLinksBadge {
+  color: #97cd47;
+  background-color: #ffffff;
+}
+/*
+ * DataTables #workersModal
+ */
+#workersModal .pagination > li.active > a {
+  color: #ffffff;
+  background-color: #97cd47;
+  border-color: #8bc536;
+}
+#workersModal .pagination > li.active > a:hover {
+  background-color: #7db130;
+}
+#workersModal .pagination > li > a {
+  color: #333;
+  background-color: #fff;
+  border-color: #cccccc;
+}
+#workersModal .pagination > li:not(.disabled):not(.active) > a:hover {
+  background-color: #e6e6e6;
+}
+#workersModal .pagination > li.disabled > a {
+  color: #666666;
+}
+#workersModal .pagination > li.next > a {
+  margin-right: 10px;
+}
+/*
+ * DataTables #groupsModal
+ */
+#groupsModal .modal-dialog {
+  width: 80%;
+}
+#groupsModal a.btn-worker {
+  margin-bottom: 2px;
+}
+#groupsModal .btn-group {
+  display: flex;
+}
+#groupsModal .pagination > li.active > a {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+#groupsModal .pagination > li.active > a:hover {
+  background-color: #449d44;
+}
+#groupsModal .pagination > li > a {
+  color: #333;
+  background-color: #fff;
+  border-color: #cccccc;
+}
+#groupsModal .pagination > li:not(.disabled):not(.active) > a:hover {
+  background-color: #e6e6e6;
+}
+#groupsModal .pagination > li.disabled > a {
+  color: #666666;
+}
+#groupsModal .pagination > li.next > a {
+  margin-right: 10px;
+}
+/*
+ * DataTables #studyLinksModal
+ */
+#studyLinksModal .pagination > li.active > a {
+  color: #ffffff;
+  background-color: #97cd47;
+  border-color: #8bc536;
+}
+#studyLinksModal .pagination > li.active > a:hover {
+  background-color: #7db130;
+}
+#studyLinksModal .pagination > li > a {
+  color: #333;
+  background-color: #fff;
+  border-color: #cccccc;
+}
+#studyLinksModal .pagination > li:not(.disabled):not(.active) > a:hover {
+  background-color: #e6e6e6;
+}
+#studyLinksModal .pagination > li.disabled > a {
+  color: #666666;
+}
+#studyLinksModal .pagination > li.next > a {
+  margin-right: 10px;
+}
+#studyLinksModal td {
+  word-break: break-all;
+}
+#studyLinksDisplayModal .btn-toggle {
+  margin: 0 0 10px;
+}
+#studyLinksTable_create {
+  display: inline;
+}
+table.dataTable tbody tr.selected {
+  color: white !important;
+  background-color: #888 !important;
+}
+table.dataTable tbody tr.selected a:hover {
+  color: #ccc !important;
+}
+pre.details-data {
+  white-space: -moz-pre-wrap !important;
+  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  white-space: pre-wrap;
+  /* css-3 */
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
+  word-break: break-all;
+}
+.borderless td {
+  border: none !important;
+}
+div.DTTT {
+  margin-bottom: 0.5em;
+  float: right;
+}
+div.dataTables_wrapper {
+  clear: both;
+}
+#resultsTable_upperToolbar,
+#resultsTable_lowerToolbar {
+  margin-top: 10px;
+  text-align: left;
+}
+#resultTable_refresh,
+#resultsTable_export,
+#resultsTable_delete,
+#resultsTable_length,
+#resultsTable_select,
+#resultsTable_search,
+#resultsTable_customize {
+  display: inline;
+}
+#resultsTable_export,
+#resultsTable_search {
+  margin-left: 50px;
+}
+#resultsTable_length {
+  margin-left: 10px;
+}
+#resultsTable_export label,
+#resultsTable_select label,
+#resultsTable_search label,
+#resultsTable_customize label {
+  font-weight: normal;
+}
+/* Sometimes DataTable SearchBuilder's 'Data', 'Condition', and 'Value' are not in-line when used with "stateSave" */
+.dtsb-data,
+.dtsb-condition,
+.dtsb-value {
+  display: inline-block !important;
+}
+.dtsb-searchBuilder {
+  padding: 10px;
+  margin-top: 10px;
+}
+#resultsTable_wrapper .pagination > li > a {
+  background-color: white;
+  color: #333;
+}
+#resultsTable_wrapper .pagination > li > a:focus,
+#resultsTable_wrapper .pagination > li > a:hover,
+#resultsTable_wrapper .pagination > li > span:focus,
+#resultsTable_wrapper .pagination > li > span:hover {
+  color: #5a5a5a;
+  background-color: #eee;
+  border-color: #ddd;
+}
+#resultsTable_wrapper .pagination > .active > a {
+  color: white;
+  background-color: darkgray !Important;
+  border: solid 1px darkgray !Important;
+}
+#resultsTable_wrapper .pagination > .active > a:hover {
+  background-color: darkgray !Important;
+  border: solid 1px darkgray;
+}
+textarea {
+  resize: vertical;
+}
+#jsonData {
+  font-family: monospace;
+}

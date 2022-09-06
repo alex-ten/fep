@@ -7,6 +7,7 @@
         <title>MeMo-JATOS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles/common.css">
         <link rel="stylesheet" href="styles/guess.css">
         <link rel="stylesheet" href="styles/input-categorical.css">
         <script src="jatos.js"></script>
@@ -18,7 +19,7 @@
         <script src="utils/eventhandlers.js"></script>
     </head>
     <body>
-        <div id="grid">
+        <div class="hidden" id="grid">
             <div id="tcount">Trials completed: </div>
             <div id="prompt"><h1>What would this monster like to eat?</h1></div>
             <div id="stimulus-flex-row">
@@ -36,7 +37,7 @@
     </body>
 
     <script>
-        jatos.onLoad(function() {
+        function main() {
             // Display number of trials completed
             $("#tcount").prop({
                 innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
@@ -81,12 +82,30 @@
                 stimFeatures: stimulusFeatures,
                 ruleLabel: ruleLabel,
                 responseOrder: shuffledResponses,
-
+                
             }
             $("#input-cell").children().on('click', data, categoricalResponse)
             
+            // Reveal elements
+            revealParentDiv()
+
+            // Remove overlay
+            jatos.removeOverlay()
+        }
+
+        jatos.onLoad(function() {
             // Add abort button
             addCustomAbortButton()
+
+            // Add overlay
+            jatos.showOverlay({
+                "text": "+", 
+                "imgUrl": "",
+                "style": `background-color: ${getOverlaySetting("background")}; width: 100%; height: 100%; font-size: 2em; opacity: 1; text-shadow: none;`
+            })
+
+            // Add component elements
+            setTimeout(main, getOverlaySetting("duration"))
         })
       </script>
 </html>

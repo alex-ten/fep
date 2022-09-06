@@ -7,6 +7,7 @@
         <title>MeMo-JATOS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles/common.css">
         <link rel="stylesheet" href="styles/choice.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -17,7 +18,7 @@
     </head>
 
     <body>
-        <div id="grid">
+        <div class="hidden" id="grid">
             <div id="tcount">Trials completed: </div>
             <div id="prompt"><h1>Choose activity</h1></div>
             <div id="menu-container">
@@ -29,12 +30,12 @@
     </body>
 
     <script>
-        jatos.onLoad(function() {
+        function main() {
             // Get family handles from the component JSON input data and shuffle if needed
             let acts = Object.keys(jatos.studySessionData["famRuleMap"]);
             if (jatos.componentJsonInput.shuffleDisplay) {
                 shuffle(acts)
-            };
+            }
 
             // Create a choice button for each activity, hook it up to a click handler, and append to the `#choice-panel` container
             for (let i = 0; i < acts.length; i++) {
@@ -43,21 +44,27 @@
                     type: "image",
                     src: `assets/stimuli/monsters-preview/f${acts[i]}.png`,
                     value: acts[i],
-                })
+                });
                 cbtn.on('click', execChoice);
                 $('#menu-square').append(cbtn);
-            };
+            }
             
             // Arranges choices available in a circular layout
-            distributeChoices();
+            distributeChoices()
 
             // Display number of trials completed
             $("#tcount").prop({
                 innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
             })
 
+        }
+
+        jatos.onLoad(function() {
             // Add abort button
             addCustomAbortButton()
-        });
+
+            // Add component elements
+            main()
+        })
       </script>  
 </html>
