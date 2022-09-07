@@ -86,15 +86,9 @@
                 stimFeatures: stimulusFeatures,
                 ruleLabel: ruleLabel,
                 responseOrder: shuffledResponses,
-                
+                stimOnset: Date.now()
             }
             $("#input-cell").children().on('click', data, categoricalResponse)
-            
-            // Reveal elements
-            revealParentDiv()
-
-            // Remove overlay
-            jatos.removeOverlay()
         }
 
         jatos.onLoad(function() {

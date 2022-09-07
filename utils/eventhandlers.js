@@ -26,8 +26,9 @@ function execChoice() {
         $(this).removeClass("option")
         $(this).addClass("option--active")
     } else if ($(this).hasClass("option--active")) {
-        // Execite committed choice
+        // Execute committed choice
         jatos.studySessionData["choice"] = this.value
+        jatos.studySessionData["dt"] = Date.now() - jatos.studySessionData.decisonOnset
         jatos.startComponentByPos(4);
     }
 }
@@ -75,13 +76,14 @@ async function binaryResponse(event) {
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
         "trialsComplete": jatos.studySessionData.stageTrialsComplete,
         "famInd":  event.data.famChoiceInd,
+        "dt": jatos.studySessionData["dt"],
         "features": event.data.stimFeatures,
         "rule": event.data.ruleLabel,
         "responseOrder": event.data.responseOrder,
         "correctResponse": event.data.correctResponse,
         "guess": this.value,
-        "correct": correct
-        // reaction time  
+        "correct": correct,
+        "rt": Date.now() - event.data.stimOnset
     };
     jatos.appendResultData(resultData);
     
@@ -94,8 +96,7 @@ async function confidenceResponse(event) {
         return;
     }
     incrementStageTrialCount()
-
-    const guess = event.data.responseOrder[event.data.confidence > 0 ? 1 : 0]
+    const guess = event.data.responseOrder[event.data.confidence > 0 ? 1 : 0];
     const correct = guess == event.data.correctResponse;
     if (jatos.studySessionData.currentStage.feedback) {
         // Wait until feedback is presented and audio track stops playing
@@ -106,6 +107,7 @@ async function confidenceResponse(event) {
         "stage": jatos.studySessionData.currentStage.name,
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
         "trialsComplete": jatos.studySessionData.stageTrialsComplete,
+        "dt": jatos.studySessionData["dt"],
         "famInd":  event.data.famChoiceInd,
         "features": event.data.stimFeatures,
         "rule": event.data.ruleLabel,
@@ -113,8 +115,8 @@ async function confidenceResponse(event) {
         "correctResponse": event.data.correctResponse,
         "guess": guess,
         "confidence": Math.abs($("#confidence-slider").val()),
-        "correct": correct
-        // reaction time  
+        "correct": correct,
+        "rt": Date.now() - event.data.stimOnset
     };
     jatos.appendResultData(resultData);
 

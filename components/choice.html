@@ -58,6 +58,8 @@
                 innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
             })
 
+            // Record when choices are revealed to measure approximate decision time
+            jatos.studySessionData['decisionOnset'] = Date.now()
 
             revealElements()
         }

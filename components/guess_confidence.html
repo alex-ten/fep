@@ -117,14 +117,9 @@
                 stimFeatures: stimulusFeatures,
                 ruleLabel: ruleLabel,
                 responseOrder: shuffledResponses,
+                stimOnset: Date.now()
             }
             $("#submit-button").on('click', data, confidenceResponse) 
-
-            // Reveal elements
-            revealParentDiv()
-
-            // Remove overlay
-            jatos.removeOverlay()
         }
 
         jatos.onLoad(function() {
