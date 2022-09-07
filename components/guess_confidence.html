@@ -106,7 +106,7 @@
             $("#confidence-slider").on('change', readSlider)
             $("#confidence-slider").on('input', readSlider)
             $(".answer").on('click', shiftSlider)
-
+            
             // Reveal elements and hide JATOS overlay on callback
             revealElements(jatos.removeOverlay)
 
@@ -126,14 +126,14 @@
             // Add abort button
             addCustomAbortButton()
 
-            // Add overlay
+            // Add JATOS overlay
             jatos.showOverlay({
                 "text": "+", 
                 "imgUrl": "",
                 "style": `background-color: ${getOverlaySetting("background")}; width: 100%; height: 100%; font-size: 2em; opacity: 1; text-shadow: none;`
             })
 
-            // Add component elements
+            // Setup and reveal remaining elements
             setTimeout(main, getOverlaySetting("duration"))
         })
 
