@@ -108,6 +108,9 @@
             $("#confidence-slider").on('input', readSlider)
             $(".answer").on('click', shiftSlider)
 
+            // Reveal elements and hide JATOS overlay on callback
+            revealElements(jatos.removeOverlay)
+
             // Link `confidenceResponse` function with the submit button
             data = {
                 correctResponse: correctResponse,

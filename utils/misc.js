@@ -1,6 +1,8 @@
-function revealParentDiv() {
-    jatos.removeOverlay()
-    $(".hidden").css("display", "block")
+function revealElements(callback) {
+    $(".hidden").css("visibility", "visible")
+    if (callback) {
+        callback()
+    }
 }
 
 function getOverlaySetting(s) {

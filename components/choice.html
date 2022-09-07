@@ -18,7 +18,8 @@
     </head>
 
     <body>
-        <div class="hidden" id="grid">
+        <div class="hidden">
+            <div id="grid">
             <div id="tcount">Trials completed: </div>
             <div id="prompt"><h1>Choose activity</h1></div>
             <div id="menu-container">
@@ -26,6 +27,7 @@
                     <div id="center"></div>
                 </div>
             </div>
+        </div>
         </div>
     </body>
 
@@ -57,6 +59,8 @@
                 innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
             })
 
+
+            revealElements()
         }
 
         jatos.onLoad(function() {
