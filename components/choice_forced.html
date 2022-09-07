@@ -10,20 +10,25 @@
         <link rel="stylesheet" href="styles/choice.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://unpkg.com/jquerykeyframes@1.0.8/dist/jquery.keyframes.min.js"></script>
         <script src="utils/misc.js"></script>
         <script src="utils/randfuncs.js"></script>
         <script src="utils/eventhandlers.js"></script>
         <script src="utils/circle-layout.js"></script>
+        <script src="utils/animations.js"></script>
     </head>
 
     <body>
         <div class="hidden">
-            <div id="grid">
+            <div id="grid" style="cursor: not-allowed;">
                 <div id="tcount">Trials completed: </div>
-                <div id="prompt"><h1>Choose activity</h1></div>
+                <div id="prompt"><h1>Choose family</h1></div>
                 <div id="menu-container">
                     <div id="menu-square">
                         <div id="center"></div>
+                        <div id="pointer">
+                            <img src="assets/greencursor2.png">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,13 +50,14 @@
                     type: "image",
                     src: `assets/stimuli/monsters-preview/f${acts[i]}.png`,
                     value: acts[i],
+                    id: `option${acts[i]}`
                 });
-                cbtn.on('click', execChoice)
                 $('#menu-square').append(cbtn)
             }
             
-            // Arranges choices available in a circular layout
-            distributeChoices()
+            // Arranges choices available in a circular layout (return pixel coordinates of each item)
+            offsets = distributeChoices()
+            defineAnimationKeyframe(jatos.studySessionData.choice, acts, offsets)
 
             // Display number of trials completed
             $("#tcount").prop({
@@ -59,9 +65,13 @@
             })
 
             // Record when choices are revealed to measure approximate decision time
-            jatos.studySessionData['decisionOnset'] = Date.now()
+            jatos.studySessionData['decisionOnset'] = undefined
 
             revealElements()
+
+            runPointerAnimations()
+
+            runChoiceAnimations(jatos.studySessionData.choice)
         }
 
         jatos.onLoad(function() {

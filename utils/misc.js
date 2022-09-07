@@ -1,3 +1,7 @@
+function getComponentPos(s) {
+    return jatos.studyJsonInput.compNamePosMap[s]
+}
+
 function revealElements(callback) {
     $(".hidden").css("visibility", "visible")
     if (callback) {

@@ -29,7 +29,7 @@ function execChoice() {
         // Execute committed choice
         jatos.studySessionData["choice"] = this.value
         jatos.studySessionData["dt"] = Date.now() - jatos.studySessionData.decisonOnset
-        jatos.startComponentByPos(4);
+        jatos.startComponentByPos(getComponentPos(jatos.currentStage.component));
     }
 }
 

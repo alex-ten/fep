@@ -65,3 +65,46 @@ input.option--active {
     top: 50%;
     background: #000;
 }
+
+div#pointer {
+    display: block; /* change to block to reveal*/
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    z-index: 98;
+}
+
+div#pointer img {
+    max-height: 100%;
+    z-index: 98;
+}
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes highlight-shadow {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    } 
+}
+
+@keyframes highlight-border {
+    from {
+        border: 3px solid rgb(85, 85, 85);
+    }
+    to {
+        border: 5px solid #4CAF50;
+    } 
+}
