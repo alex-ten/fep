@@ -3,7 +3,6 @@ div#input-cell {
     grid-column-start: 2;
     display: flex;
     justify-content: center;
-    border: 1px solid magenta;
 }
 
 input.response {
