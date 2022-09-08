@@ -3,12 +3,12 @@ function init1d1() {
     let dimensions = shuffle([randInt(6) + 1, null])
     let relevant = [false, false]
     relevant[dimensions.indexOf(null)] = true
-    return [dimensions, relevant, '1d1']
+    return [dimensions, relevant]
 }
 
 // Initialize categorization rule i1D
 function init2d1() {
-    return [[null, null], shuffle([false, true]), '2d1']
+    return [[null, null], shuffle([false, true])]
 }
 
 function initSchedule(blockSize, maxTrials, actsOrder, shuffleOrder) {
@@ -37,12 +37,7 @@ function initSchedule(blockSize, maxTrials, actsOrder, shuffleOrder) {
 
 function initSession() {
     // Create a list of coded labels for each stimulus family
-    let famCodes = [
-        1, // Bear
-        2, // Bunny
-        3, // Green
-        4  // Squid
-    ];
+    let famCodes = jatos.studyJsonInput.famsIncluded
 
     // Create a list of codes for category labels (just numbers from 0 to 17)
     let catCodes = [...Array(18).keys()];
@@ -56,20 +51,25 @@ function initSession() {
     };
 
     // Create instructions for activity rules
-    let actRules = [
-        init1d1(),                              // 1 variable dimension; 1 relevant
-        init2d1(),                              // 2 variable dimensions; 1 relevant
-        [[null, null], [true, true], '2d2'],    // 2 variable dimensions; 2 relevant
-        [[null, null], [false, false], '2d0']   // 2 variable dumensions; 0 relevant
-    ];
+    const actRules = {
+        '1d1': init1d1(),                       // 1 variable dimension; 1 relevant
+        '2d1': init2d1(),                       // 2 variable dimensions; 1 relevant
+        '2d2': [[null, null], [true, true]],    // 2 variable dimensions; 2 relevant
+        '2d0': [[null, null], [false, false]]   // 2 variable dumensions; 0 relevant
+    };
+
+    let rulesIncluded = [];
+    jatos.studyJsonInput.rulesIncluded.forEach((element) => {
+        rulesIncluded.push(actRules[element].concat([element]))
+    })
 
     // Shuffle one of the arrays
-    shuffle(actRules)
+    shuffle(rulesIncluded)
 
     // Create a mapping from stimulus family labels to activity labels
     let famRuleMap = {};
     famCodes.forEach((element, index) => {
-        famRuleMap[element] = actRules[index]
+        famRuleMap[element] = rulesIncluded[index]
     });
     jatos.studySessionData["famRuleMap"] = famRuleMap
 
