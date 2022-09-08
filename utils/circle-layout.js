@@ -3,7 +3,7 @@ function distributeChoices() {
     let fields = $('.option');
     let sidelength = $('#menu-square').height();
     let radius = .25 * sidelength;
-    let angle = 0;
+    let angle = randInt(360) * (Math.PI / 180);
     let step = (2 * Math.PI) / fields.length;
 
     let offsets = [];
