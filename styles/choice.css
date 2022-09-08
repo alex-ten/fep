@@ -108,3 +108,8 @@ div#pointer img {
         border: 5px solid #4CAF50;
     } 
 }
+
+@keyframes click {
+    0% {transform: scale(0.5)}
+    100% {transform: scale(1)}
+}

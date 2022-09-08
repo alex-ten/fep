@@ -3,7 +3,7 @@ function runChoiceAnimations(id) {
     $(".highlight").css({
         "animation-name": "highlight-shadow, highlight-border",
         "animation-duration": "300ms, 0ms",
-        "animation-delay": "700ms, 1500ms",
+        "animation-delay": "1200ms, 2000ms",
         "animation-iteration-count": "1, 1",
         "animation-timing-function": "linear, linear",
         "animation-fill-mode": "forwards, forwards"
@@ -13,12 +13,12 @@ function runChoiceAnimations(id) {
 function runPointerAnimations() {
     $("#pointer").addClass('move')
     $(".move").css({
-        "animation-name": "spin, move",
-        "animation-duration": "500ms, 500ms",
-        "animation-delay": "0ms, 500ms",
-        "animation-iteration-count": "1, 1",
-        "animation-timing-function": "ease-in-out, ease-in-out",
-        "animation-fill-mode": "forwards, forwards"
+        "animation-name": "spin, move, click",
+        "animation-duration": "500ms, 500ms, 100ms",
+        "animation-delay": "500ms, 1000ms, 1900ms",
+        "animation-iteration-count": "1, 1, 1",
+        "animation-timing-function": "ease-in-out, ease-in-out, linear",
+        "animation-fill-mode": "forwards, forwards, forwards"
     })
 }
 
