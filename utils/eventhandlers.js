@@ -66,7 +66,7 @@ function promiseFeedback(correct){
     })
 }
 
-async function binaryResponse(event) {
+async function categoricalResponse(event) {
     incrementStageTrialCount()
 
     const correct = this.value == event.data.correctResponse;
