@@ -27,6 +27,7 @@ div#tcount {
     grid-column-start: 2;
     display: flex;
     justify-content: right;
+    margin-top: 1em;
 }
 
 div#prompt {
