@@ -1,40 +1,50 @@
 {
-    "taskStack": [
-      {
-        "name": "free",
-        "feedback": true,
-        "component": "guess_confidence",
-        "scheduleParams": null,
-        "maxTrials": 216
-      },
-      {
-        "name": "test1",
-        "feedback": false,
-        "component": "guess_confidence",
-        "scheduleParams": {
-          "actsOrder": [
-            1,
-            3,
-            4
-          ],
-          "sampleWithReplacement": false,
-          "blockSize": 1,
-          "shuffleOrder": 2,
-          "choiceAnimation": false
-        },
-        "maxTrials": 72
-      }
-    ],
-    "compNamePosMap": {
-      "choice_free": 2,
-      "choice_forced": 3,
-      "guess_categorical": 4,
-      "guess_confidence": 5
+  "taskStack": [
+    {
+      "name": "free",
+      "feedback": true,
+      "component": "guess_confidence",
+      "scheduleParams": null,
+      "maxTrials": 1
     },
-    "default": {
-      "overlay": {
-        "duration": 1000,
-        "background": "white"
-      }
+    {
+      "name": "test1",
+      "feedback": false,
+      "component": "guess_confidence",
+      "scheduleParams": {
+        "actsOrder": [
+          1,
+          3,
+          4
+        ],
+        "sampleWithReplacement": false,
+        "blockSize": 1,
+        "shuffleOrder": 2,
+        "choiceAnimation": false
+      },
+      "maxTrials": 72
     }
-  }
+  ],
+  "compNamePosMap": {
+    "choice_free": 2,
+    "choice_forced": 3,
+    "guess_categorical": 4,
+    "guess_confidence": 5
+  },
+  "default": {
+    "overlay": {
+      "duration": 500,
+      "background": "white"
+    }
+  },
+  "famsIncluded": [
+    1,
+    3,
+    4
+  ],
+  "rulesIncluded": [
+    "2d2",
+    "2d2",
+    "2d2"
+  ]
+}
