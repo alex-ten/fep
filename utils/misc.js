@@ -20,9 +20,9 @@ function getOverlaySetting(s) {
 }
 
 function incrementStageTrialCount() {
-        jatos.studySessionData.stageTrialsComplete += 1
+    jatos.studySessionData.currentStage.trialsComplete += 1;
     $("#tcount").prop({
-        innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
+        innerHTML: `Trials completed: ${jatos.studySessionData.currentStage.trialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
     });
 }
 

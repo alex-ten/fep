@@ -41,7 +41,7 @@ function nextTrialOrStage() {
     // If `maxTrials` of the current stage is reached, either
     // (1) Initialize and start next stage, or
     // (2) End study
-    if (jatos.studySessionData.stageTrialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
+    if (jatos.studySessionData.currentStage.trialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
         if (jatos.studySessionData.taskStack.length) {
             initNextStage()
             initTrial()

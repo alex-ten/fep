@@ -55,7 +55,7 @@
 
             // Display number of trials completed
             $("#tcount").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
+                innerHTML: `Trials completed: ${jatos.studySessionData.currentStage.trialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
             })
 
             // Record when choices are revealed to measure approximate decision time

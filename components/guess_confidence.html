@@ -49,7 +49,7 @@
         function main() {
             // Display number of trials completed
             $("#tcount").prop({
-                innerHTML: `Trials completed: ${jatos.studySessionData.stageTrialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
+                innerHTML: `Trials completed: ${jatos.studySessionData.currentStage.trialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
             });
             
             // Generate stimulus parameters
