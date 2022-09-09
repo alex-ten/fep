@@ -78,7 +78,7 @@ async function categoricalResponse(event) {
     let resultData = {
         "stage": jatos.studySessionData.currentStage.name,
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
-        "trialsComplete": jatos.studySessionData.stageTrialsComplete,
+        "trialsComplete": jatos.studySessionData.currentStage.trialsComplete,
         "famInd":  event.data.famChoiceInd,
         "dt": jatos.studySessionData["dt"],
         "features": event.data.stimFeatures,
@@ -110,7 +110,7 @@ async function confidenceResponse(event) {
     let resultData = {
         "stage": jatos.studySessionData.currentStage.name,
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
-        "trialsComplete": jatos.studySessionData.stageTrialsComplete,
+        "trialsComplete": jatos.studySessionData.currentStage.trialsComplete,
         "dt": jatos.studySessionData["dt"],
         "famInd":  event.data.famChoiceInd,
         "features": event.data.stimFeatures,
