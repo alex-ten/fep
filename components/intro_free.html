@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MeMo-JATOS</title>
+        <link rel="stylesheet" href="styles/common.css">
+        <script src="jatos.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="utils/misc.js"></script>
+        <script src="utils/init.js"></script>
+    </head>
+    <body>
+        <h1>YOU ARE STARTING FREE PRACTICE...</h1>
+        <button id="proceed">Proceed</button>
+    </body>
+
+    <script>
+        jatos.onLoad(
+            $("#proceed").on('click', initTrial)
+        )
+    </script>
+</html>

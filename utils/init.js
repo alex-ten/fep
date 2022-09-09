@@ -85,7 +85,8 @@ function initSession() {
 }
 
 function initNextStage() {
-    jatos.studySessionData["currentStage"] = jatos.studySessionData.taskStack.shift()
+    const stage = jatos.studySessionData.taskStack.shift()
+    jatos.studySessionData["currentStage"] = stage
     jatos.studySessionData.currentStage["trialsComplete"] = 0
     jatos.studySessionData.currentStage["trialsPerFam"] = {}
     jatos.studyJsonInput.famsIncluded.forEach((element) => {
@@ -98,28 +99,30 @@ function initNextStage() {
 
     const sp = jatos.studySessionData.currentStage.scheduleParams; // sp = schedule parameters
     if (sp !== null) {
-        jatos.studySessionData["schedule"] = initSchedule(
+        jatos.studySessionData.currentStage["schedule"] = initSchedule(
             blockSize = sp.blockSize,
             maxTrials = jatos.studySessionData.currentStage.maxTrials,
             actsOrder = sp.actsOrder,
             shuffleOrder = sp.shuffleOrder
         )
     } else {
-        jatos.studySessionData["schedule"] = null
+        jatos.studySessionData.currentStage["schedule"] = null
     }
+    return stage;
 }
 
-// Redirect to the choice component if no schedule is set for the current stage or \
-// redirect to the guess component if forced schedule exists
-function initTrial() {
-    if (jatos.studySessionData.schedule !== null) {
-        jatos.studySessionData["choice"] = jatos.studySessionData.schedule.shift() // forced choice from schedule
+function initTrial() { //intro = false
+    // If schedule has been initialized for current stage
+    if (jatos.studySessionData.currentStage.schedule !== null) {
+        jatos.studySessionData["choice"] = jatos.studySessionData.currentStage.schedule.shift() // pop the first forced choice from schedule
+        // If animation setting for the schedule is on
         if (jatos.studySessionData.currentStage.scheduleParams.choiceAnimation) {
-            jatos.startComponentByPos(getComponentPos("choice_forced"))
+            jatos.startComponentByPos(getComponentPos("choice_forced"))  // redirect to choice_forced component (plays animation automatically)
         } else {
-            jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component))
+            jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component)) // otherwise, redirect to the guessing component
         }
+    // If schedule has not been initialized (== null)
     } else {
-        jatos.startComponentByPos(getComponentPos("choice_free"))
+        jatos.startComponentByPos(getComponentPos("choice_free")) // redirect to choice_free component
     }
 }

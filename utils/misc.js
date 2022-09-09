@@ -36,3 +36,12 @@ function addCustomAbortButton() {
         style: ""
     })
 }
+
+function showIntro() {
+    jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.intro))
+}
+
+function beginStage() {
+    jatos.studySessionData.currentStage.intro = false;
+    jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component))
+}

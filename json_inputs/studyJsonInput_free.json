@@ -1,28 +1,31 @@
 {
   "taskStack": [
     {
-      "name": "free",
+      "name": "free_epochs",
       "feedback": true,
       "component": "guess_confidence",
       "scheduleParams": null,
-      "maxTrials": 1
+      "maxTrials": 216,
+      "epochs": true,
+      "intro": "intro_free"
     },
     {
       "name": "test1",
       "feedback": false,
       "component": "guess_confidence",
+      "epochs": true,
+      "maxTrials": 108,
+      "intro": "intro_test1",
       "scheduleParams": {
         "actsOrder": [
           1,
           3,
           4
         ],
-        "exhaustive": true,
         "blockSize": 1,
         "shuffleOrder": 2,
         "choiceAnimation": false
-      },
-      "maxTrials": 72
+      }
     }
   ],
   "compNamePosMap": {

@@ -5,12 +5,7 @@ function beginTask() {
         "famCatMap": jatos.studySessionData.famCatMap
     }
     jatos.appendResultData(initData)
-    if (jatos.studySessionData.taskStack.length) {
-        initNextStage()
-        initTrial()
-    } else {
-        jatos.endStudy()
-    }
+    nextTrialOrStage(true)
 }
 
 function execChoice() {
@@ -37,14 +32,18 @@ function forceChoice() {
     jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component));
 }
 
-function nextTrialOrStage() {
+function nextTrialOrStage(initNewStage=false) {
     // If `maxTrials` of the current stage is reached, either
     // (1) Initialize and start next stage, or
     // (2) End study
-    if (jatos.studySessionData.currentStage.trialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
+    if (initNewStage || jatos.studySessionData.currentStage.trialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
         if (jatos.studySessionData.taskStack.length) {
-            initNextStage()
-            initTrial()
+            const newStage = initNextStage();
+            if (newStage.intro != null) {
+                showIntro()
+            } else {
+                initTrial()
+            }
         } else {
             jatos.endStudy()
         }
