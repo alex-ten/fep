@@ -49,3 +49,19 @@ function getStimCat(relDims) {
             : 0;
     }
 }
+
+function genEpochs(famCodes) {
+    // This is a highly specific function. It assumes there are 6 values per dimension and that there are two variable dimensions.
+    // Make it less specific by using the mapping from family codes to rule definitions. When the rule is 1d-, fix one dimension at a constant value
+    let s = {};
+    famCodes.forEach((fam) => {
+        let epoch = [];
+        for (let i=1; i < 7; i++) {
+            for (let j=1; j < 7; j++) {
+                epoch.push([i, j])
+            }
+        }
+        s[fam] = shuffle(epoch)
+    })
+    return s;
+}
