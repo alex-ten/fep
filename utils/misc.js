@@ -19,11 +19,12 @@ function getOverlaySetting(s) {
     }
 }
 
-function incrementStageTrialCount() {
+function incrementTrialCounts() {
     jatos.studySessionData.currentStage.trialsComplete += 1;
     $("#tcount").prop({
         innerHTML: `Trials completed: ${jatos.studySessionData.currentStage.trialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
     });
+    jatos.studySessionData.currentStage.trialsPerFam[jatos.studySessionData.choice] += 1;
 }
 
 function addCustomAbortButton() {

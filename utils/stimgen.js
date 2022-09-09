@@ -14,13 +14,13 @@ function genStimFeatures(dimVariance) {
         return getNextFeatures();
     } else {
         let features = [...dimVariance];
-    for (let i = 0; i < dimVariance.length; i++) {
-        if (dimVariance[i] === null) {
-            features[i] = randInt(6) + 1;
+        for (let i = 0; i < dimVariance.length; i++) {
+            if (dimVariance[i] === null) {
+                features[i] = randInt(6) + 1;
+            }
         }
+        return features;
     }
-    return features;
-}
 }
 
 // Return only relevant features based on the (boolean) relevance array

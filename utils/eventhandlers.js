@@ -67,7 +67,7 @@ function promiseFeedback(correct){
 }
 
 async function categoricalResponse(event) {
-    incrementStageTrialCount()
+    incrementTrialCounts()
 
     const correct = this.value == event.data.correctResponse;
     if (jatos.studySessionData.currentStage.feedback) {
@@ -99,7 +99,7 @@ async function confidenceResponse(event) {
         alert("Please, make a guess in favor of one option, even if are not confident in either option. To make a guess, move the green slider towards the option you would like to answer with.")
         return;
     }
-    incrementStageTrialCount()
+    incrementTrialCounts()
     const guess = event.data.responseOrder[event.data.confidence > 0 ? 1 : 0];
     const correct = guess == event.data.correctResponse;
     if (jatos.studySessionData.currentStage.feedback) {

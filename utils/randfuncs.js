@@ -11,8 +11,15 @@ function shuffle(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  };
+}
 
+function shuffleObjVals(obj) {
+    Object.keys(obj).forEach(
+        (key) => {
+            obj[key] = shuffle(obj[key])
+        }
+    )
+}
 
 function randInt(max) {
     return Math.floor(Math.random() * max);

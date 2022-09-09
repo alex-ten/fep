@@ -86,9 +86,17 @@ function initSession() {
 
 function initNextStage() {
     jatos.studySessionData["currentStage"] = jatos.studySessionData.taskStack.shift()
-    jatos.studySessionData["stageTrialsComplete"] = 0
+    jatos.studySessionData.currentStage["trialsComplete"] = 0
+    jatos.studySessionData.currentStage["trialsPerFam"] = {}
+    jatos.studyJsonInput.famsIncluded.forEach((element) => {
+        jatos.studySessionData.currentStage.trialsPerFam[element] = 0
+    })
+    
+    if (jatos.studySessionData.currentStage.epochs) {
+        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studyJsonInput.famsIncluded)
+    }
 
-    const sp = jatos.studySessionData.currentStage.scheduleParams;
+    const sp = jatos.studySessionData.currentStage.scheduleParams; // sp = schedule parameters
     if (sp !== null) {
         jatos.studySessionData["schedule"] = initSchedule(
             blockSize = sp.blockSize,

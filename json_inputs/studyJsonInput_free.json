@@ -17,7 +17,7 @@
           3,
           4
         ],
-        "sampleWithReplacement": false,
+        "exhaustive": true,
         "blockSize": 1,
         "shuffleOrder": 2,
         "choiceAnimation": false
