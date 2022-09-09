@@ -1,3 +1,13 @@
+function getNextFeatures() {
+    const choice = jatos.studySessionData.choice;
+    const count = jatos.studySessionData.currentStage.trialsPerFam[choice];
+    const epoch = jatos.studySessionData.currentStage.epochs[choice];
+    if (count % epoch.length == 0) {
+        jatos.studySessionData.currentStage.epochs[choice] = shuffle(epoch)
+    }
+    return jatos.studySessionData.currentStage.epochs[choice][count];
+}
+
 // Generate stimulus features based on array that specifies whether a dimension is variable or fixed at a given value
 function genStimFeatures(dimVariance) {
     let features = [... dimVariance];
