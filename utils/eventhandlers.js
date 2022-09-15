@@ -1,4 +1,5 @@
 function beginTask() {
+    if (!$(this).hasClass("disabled")) {
     initSession()       // Defined in initsess.js
     let initData = {
         "famRuleMap": jatos.studySessionData.famRuleMap,
@@ -6,6 +7,7 @@ function beginTask() {
     }
     jatos.appendResultData(initData)
     nextTrialOrStage(true)
+}
 }
 
 function execChoice() {
