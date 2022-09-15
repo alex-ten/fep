@@ -3,13 +3,14 @@ div#input-cell {
     grid-column-start: 2;
     display: grid;
     grid-template-columns: 20% 60% 20%;
-    grid-template-rows: 30% 40% 30%;
+    grid-template-rows: 15% 55% 30%;
 }
 
 p.label{
     font-size: 1.5em;
     justify-self: center;
     align-self: end;
+    margin: 0;
 }
 
 p#label-left{
@@ -27,21 +28,24 @@ p#label-mid{
     grid-column-start: 2;
 }
 
-input.answer {
+.answer {
     justify-self: center;
     height: 100%;
     aspect-ratio: 1 / 1;
+    /* border-bottom: 2px solid black; */
+}
+
+.answer:hover {
+    cursor: pointer;
 }
 
 input#answer-left {
     grid-row-start: 2;
-    grid-row-end: 4;
     grid-column-start: 1;
 }
 
 input#answer-right {
     grid-row-start: 2;
-    grid-row-end: 4;
     grid-column-start: 3;
 }
 
@@ -49,7 +53,7 @@ input#answer-right {
     opacity: .2;
 }
 
-#confidence-slider {
+.confidence-slider {
     -webkit-appearance: none;
     width: 100%;
     height: 5px;
@@ -63,12 +67,12 @@ input#answer-right {
     align-self: center;
 }
 
-#confidence-slider:hover {
+.confidence-slider:hover {
     opacity: 1;
     cursor: pointer;
 }
 
-#confidence-slider::-webkit-slider-thumb {
+.confidence-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -77,20 +81,22 @@ input#answer-right {
     cursor: pointer;
 }
 
-#confidence-slider::-moz-range-thumb {
+.confidence-slider::-moz-range-thumb {
     width: 20px;
     height: 50px;
     background: #4CAF50;;
     cursor: pointer;
 }
 
-button#submit-button {
+button.submit-button {
+    grid-row-start: 3;
+    grid-column-start: 2;
     display: inline-block;
     height: 80%;
     width: 25%;
     justify-self: center;
     align-self: end;
-    font-size: 24px;
+    font-size: 1.5vw;
     text-align: center;
     text-decoration: none;
     outline: none;
@@ -146,4 +152,35 @@ button.enabled {
     opacity: 1.0;
     background-color: #4CAF50;
     cursor: pointer;
+}
+
+/* Credit to dogucan at SO: https://stackoverflow.com/questions/66952087/how-to-create-a-gradient-progress-bar-with-a-fixed-gradient*/
+.bar-bg, .bar-bg-left, .bar-bg-right {
+    height: 20px;
+    width: 150px;
+    margin: 5px 0px;
+    background: white;
+    position: relative; /* relative here */
+    justify-self: center;
+}
+  
+.bar-fg,
+.bar-bg-left > .bar-fg,
+.bar-bg-right > .bar-fg {
+    height: 20px;
+    border-radius: 20px;
+     /* this will do the magic */
+    -webkit-mask:linear-gradient(#fff 0 0);
+            mask:linear-gradient(#fff 0 0);
+            opacity: 1;
+}
+
+.bar-fg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, cyan, magenta); /* your gradient here */
 }
