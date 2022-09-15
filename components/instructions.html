@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MeMo-JATOS</title>
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/instructions.css">
+    <link rel="stylesheet" href="styles/tutorial.css">
+    <link rel="stylesheet" href="styles/input-confidence.css">
+    <script src="jatos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="utils/tutorial.js"></script>
+    <script src="utils/misc.js"></script>
+    <script src="utils/randfuncs.js"></script>
+    <script src="utils/stimgen.js"></script>
+    <script src="utils/init.js"></script>
+    <script src="utils/eventhandlers.js"></script>
+</head>
+
+<body>
+    <div class="grid">
+        <h1><a>Instructions</a></h1>
+        <div class="instructions">
+            <div>
+                <div class="page default">
+                    <h2>1. About the game</h2>
+                    <p>The game involves 3 families of food-picky monsters 👾. Each family consists of various individuals, and each individual has its own unique appearance and favorite food.</p>
+                    <p class="emphasize">While the monsters may not realize this, it is possible to predict what they prefer to eat by the way they look! The goal of the game is to figure out who likes to eat what based on how they look. In other words, you need to discover the rule behind food preferences of the monsters.</p>
+                    <p>As you haven’t met the monsters yet, you can only guess what food preferences they have. However, you will get a chance to offer them food and see if they like it or not. These clues will help you figure out the rule!</p>
+                </div>
+            </div>
+            <div>
+                <div class="page default">
+                    <h2>2. Gameplay</h2>
+                    <p>When you interact with a monster family, different monsters from that family will be presented to you. For each monster, you will see two different food options.</p>
+                    <p> You can indicate which food, <i>in your opinion</i>, is more likely to be enjoyed by the monster. To indicate your guess, you will use the controls (slider and button) as shown below.</p>
+                </div>
+            </div>
+            <div>
+                <div class="page default">
+                    <h2>3.1. Controls</h2>
+                    <p>We will ask you to provide a guess for each monster. You will need to move the slider towards the option that you want to respond with. For example, if you suspect - <i>but not entirely sure</i> - that a monster likes strawberries, you would move the slider towards the strawberry option, but, perhaps, not all the way down: </p>
+                </div>
+            </div>
+            <div>
+                <div class="page default">
+                    <h2>3.2. Controls</h2>
+                    <p>When you move the slider towards one of the options, you will see the <code>'Submit guess'</code> button change its color to green</p>
+                    <p>You will also see a color bar appear under the selected option.</p>
+                    <p>The color bar is there to indicate the level of confidence in your guess.</p>
+                    <p class="emphasize">Please, indicate confidence in your guesses as truthfully as possible!</p>
+                    <p>Note, that you won't be able to proceed without providing a guess in favor of one of the options. The <code>'Submit guess'</code> button will be disabled if the slider is in the middle of the scale.</p>
+                </div>
+            </div>
+            <div>
+                <div class="page smaller">
+                    <h2>4. Try it yourself</h2>
+                    <div class="input-grid">
+                        <div class="input-row row1">
+                            <div id="answer1-left" class="answer left"><span class="untargeted">🍔</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div>
+                            </div>
+                            <p class="prompt">Move the slider below to express that you are <i>100% sure</i> that the answer is 🍔 (tip: you can simply click on 🍔 to move the slider all the way to the left immediately).</p>
+                            <input id="inp1" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00">
+                            <div id="answer1-right" class="answer right"><span class="untargeted">🍇</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
+                            <input type="hidden" id="state1" value="0">
+                        </div>
+                        <div class="input-row row2">
+                            <div id="answer2-left" class="answer left"><span class="untargeted">🥜</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
+                            <p class="prompt">Move the slider below to express that you are <i>very unsure</i> about the answer, but you would like see if 🥝 is correct.</p>
+                            <input id="inp2" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00">
+                            <div id="answer2-right" class="answer right"><span class="untargeted">🥝</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
+                            <input type="hidden" id="state2" value="0">
+                        </div>
+                        <div class="input-row row3">
+                            <div id="answer3-left" class="answer left"><span class="untargeted">🫐</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
+                            <p class="prompt">Move the slider below to express that you are <i>somewhat</i> confident that the answer is 🫐.</p>
+                            <input id="inp3" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00">
+                            <div id="answer3-right" class="answer right"><span class="untargeted">🍕</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
+                            <input type="hidden" id="state3" value="0">
+                        </div>
+                    </div>
+                    <p>Please move all sliders according to the instructions.<br/>When a slider is in a correct position, a red dot below will turn green.</p>
+                    <div class="feedback-row">
+                        <div id="feedback-light1"></div>
+                        <div id="feedback-light2"></div>
+                        <div id="feedback-light3"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="page default">
+                    <h2>5. Feedback</h2>
+                    <p>After submitting your guess, you will receive visual and auditory feedback on whether your guess was correct. Click on the speech-bubbles below to hear the sound.</p>
+                    <p><i>Please, ensure your volume is at a comfortable listening level.</i></p>
+                    <p>Monsters will say <img id="yum" class="inline playable" src="assets/stimuli/feedback/yum.png"> when they <strong>like</strong> the food.</p>
+                    <p>Monsters will say <img id="yuck" class="inline playable"  src="assets/stimuli/feedback/yuck.png"> when they <strong>dislike</strong> the food.</p>
+                    <audio id="correct-sound" src="assets/stimuli/feedback/mmm.mp3" type="audio/mp3"></audio>
+                    <audio id="incorrect-sound" src="assets/stimuli/feedback/raspberry_grosser.mp3" type="audio/mp3"></audio>
+                </div>
+            </div>
+            <div>
+                <div class="page default">
+                    <h2>6. Task stages</h2>
+                    <p>The task is organized in 3 stages: 
+                    <ol class="default">
+                        <li>First, we will let you freely interact with the monster families for a total of 216 rounds. In each round, you will choose which family you would like to interact with. This will take approximately [DURATION_FREE] minutes to complete. First, we will let you interact with the monster families for a total of 216 rounds. In each round, we will choose a family for you to interact with. This will take approximately [DURATION_FORCED] minutes to complete.</li>
+                        <li>Then, we will test your knowledge of food preferences across all monster families. We will ask you to provide guesses like in the 1st stage, but you will not receive any feedback during the test. This will take approximately [DURATION_TEST] minutes to complete.</li>
+                        <li>After, we will test your knowledge once again [DELAY] day(s) later. The test will be the same as before and will also take approximately [DURATION_TEST] minutes to complete. </li>
+                        <li>Finally, we will ask you a few questions about your thought about our game. This will take approximately [DURATION_QUESTIONS] to complete.</li>
+                    </ol> 
+                </div>
+            </div>
+            <div>
+                <div class="page default">
+                    <h2>7. Begin task</h2>
+                    <p id="hint-message">It seems that you haven't understood all the instructions yet. Please make sure you've completed all three steps in section <strong>4. Try it yourself</strong>.</p>
+                    <p id="proceed-message">You are ready to go! Press the button below to begin the task.</p>
+                    <!-- play button from https://css.gg/play-button-o -->
+                    <div class="go-button disabled"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="lib/slick/slick.min.js"></script>
+</body>
+
+<script>
+    $("img").click(function() {
+        $(this).toggleClass('bigger');
+    })
+
+    $(document).ready( function() {       
+        $(".instructions").slick({
+            lazyLoad: 'ondemand',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: false,
+            centerMode: true,
+            centerPadding: '0%',
+            draggable: false,
+            adaptiveHeight: true,
+            infinite: false,
+            initialSlide: 4
+        })
+    })
+
+    const ranges = [null, [-1.00, -.99], [0.01, 0.10], [-.80, -.20]]
+    for (let i=1; i < 4; i++) {
+        $(`#inp${i}`).on('change', {id: i, range: ranges[i]}, readTutorialSlider)
+        $(`#inp${i}`).on('input', {id: i, range: ranges[i]}, readTutorialSlider)
+        $(`#answer${i}-left`).on('click', {id: i}, shiftTutorialSlider)
+        $(`#answer${i}-right`).on('click', {id: i}, shiftTutorialSlider)
+    }
+    $("img#yum").on('click', playYum)
+    $("img#yuck").on('click', playYuck)
+
+    $(".go-button").on('click', beginTask)
+</script>
+
+</html>
