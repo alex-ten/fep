@@ -1,0 +1,147 @@
+.logos {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 20vw;
+    margin: 5vh 3vw;
+}
+
+.info {
+    display: block;
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
+
+.grid {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 10% 80% 10%;
+}
+
+.grid h1 {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    justify-self: center;
+    align-self: end;
+    font-size: 50px;
+    margin-bottom: 2%;
+    
+}
+
+.instructions {
+    border-top: 2px solid rgb(47, 47, 47);
+    grid-column-start: 2;
+    grid-row-start: 2;
+    display: flex;
+    align-items: stretch;
+}
+
+.page {
+    /* border: 1px solid black; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2em;
+}
+
+.page img.instructional {
+    width: 600px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.page img.instructional:hover {
+    cursor: zoom-in;
+}
+
+.page img.instructional.bigger {
+    width: 900px;
+}
+
+.page img.instructional.bigger:hover {
+    cursor: zoom-out;
+}
+
+.page h2 {
+    font-size: 30px;
+}
+
+.default p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.default ol > li {
+    font-size: 20px;
+    margin-bottom: 1em;
+}
+
+.smaller p {
+    font-size: 18px;
+    text-align: center;
+}
+
+.page > p.emphasize {
+    font-weight: bold;
+    font-size: 30px;
+    color: tomato;
+}
+
+/* from https://css.gg/play-button-o */
+.go-button {
+    margin: 50px;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 220px;
+    height: 220px;
+    border: 10px solid #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+   }
+   
+.go-button::before {
+    color: #4CAF50;
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 100px;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 60px solid;
+    top: 50px;
+    left: 80px;
+    cursor: pointer;
+}
+
+.go-button:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    cursor: pointer;
+}
+
+.go-button.disabled {
+    opacity: 0.2;
+}
+
+
+.go-button.disabled:hover, .go-button.disabled:hover::before {
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+#proceed-message {
+    visibility: hidden;
+}
+
+img.inline {
+    max-height: 3em;
+    aspect-ratio: 1 / 1;
+    display: inline;
+}
