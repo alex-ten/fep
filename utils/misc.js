@@ -1,3 +1,5 @@
+function all(arr) {return arr.every(Boolean)}
+
 function getComponentPos(s) {
     return jatos.studyJsonInput.compNamePosMap[s]
 }
