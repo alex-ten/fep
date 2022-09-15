@@ -1,0 +1,15 @@
+.logos {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 20vw;
+    margin: 5vh 3vw;
+}
+
+.info {
+    display: block;
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
