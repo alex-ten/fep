@@ -1,13 +1,13 @@
 function beginTask() {
     if (!$(this).hasClass("disabled")) {
-    initSession()       // Defined in initsess.js
-    let initData = {
-        "famRuleMap": jatos.studySessionData.famRuleMap,
-        "famCatMap": jatos.studySessionData.famCatMap
+        initSession()       // Defined in initsess.js
+        let initData = {
+            "famRuleMap": jatos.studySessionData.famRuleMap,
+            "famCatMap": jatos.studySessionData.famCatMap
+        }
+        jatos.appendResultData(initData)
+        nextTrialOrStage(true)
     }
-    jatos.appendResultData(initData)
-    nextTrialOrStage(true)
-}
 }
 
 function execChoice() {
@@ -119,7 +119,7 @@ async function confidenceResponse(event) {
         "responseOrder": event.data.responseOrder,
         "correctResponse": event.data.correctResponse,
         "guess": guess,
-        "confidence": Math.abs($("#confidence-slider").val()),
+        "confidence": Math.abs($(".confidence-slider").val()),
         "correct": correct,
         "rt": Date.now() - event.data.stimOnset
     };
@@ -130,24 +130,27 @@ async function confidenceResponse(event) {
 
 function readSlider(event) {
     if (this.value == 0.00) {
-        $("#submit-button").removeClass("enabled")
-        $("#submit-button").addClass("disabled")
+        $(".submit-button").removeClass("enabled")
+        $(".submit-button").addClass("disabled")
         $(`#label-mid`).css({opacity: 1.0})
+        $(".bar-fg").css({width: "0%"})
     } else {
-        $("#submit-button").removeClass("disabled")
-        $("#submit-button").addClass("enabled")
+        $(".submit-button").removeClass("disabled")
+        $(".submit-button").addClass("enabled")
 
         const targ = this.value > 0.0 ? ["left", "right"] : ["right", "left"]
         const opac = .2 + Math.abs(this.value) * .8
         $(`#label-${targ[1]}`).removeClass("untargeted").css({opacity: opac})
         $(`#answer-${targ[1]}`).removeClass("untargeted").css({opacity: opac})
+        $(`.bar-bg-${targ[1]} > .bar-fg`).css({width: `${opac*100}%`})
         $(`#label-${targ[0]}`).css({opacity: 0.2})
         $(`#answer-${targ[0]}`).css({opacity: 0.2})
+        $(`.bar-bg-${targ[0]} > .bar-fg`).css({width: "0%"})
         $("#label-mid").css({opacity: 1.2 - opac})
     }
 }
 
 function shiftSlider() {
-    $(this).attr("id") == "answer-left" ? $("#confidence-slider").val(-1.0) : $("#confidence-slider").val(1.0)
-    $("#confidence-slider").trigger('change')
+    $(this).attr("id") == "answer-left" ? $(".confidence-slider").val(-1.0) : $(".confidence-slider").val(1.0)
+    $(".confidence-slider").trigger('change')
 }
