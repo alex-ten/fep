@@ -67,4 +67,9 @@ img#incorrect-image {
 img#stimulus {
     max-height: 100%;
     margin-bottom: 5%;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }

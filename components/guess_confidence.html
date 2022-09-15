@@ -34,7 +34,9 @@
                     <p class="label" id="label-mid">Not sure</p>
                     <p class="label untargeted" id="label-left">I'm sure it's</p>
                     <p class="label untargeted" id="label-right">I'm sure it's</p>
-                    <button id="submit-button" class="disabled">
+                    <div class="bar-bg-left"><div class="bar-fg" style="width:0%"></div></div>
+                    <div class="bar-bg-right"><div class="bar-fg" style="width:0%"></div></div>
+                    <button class="submit-button disabled">
                         Submit guess
                         <span id="disabled-hint">💡 Please, provide a guess by moving the green slider above.</span>
                     </button>
@@ -66,6 +68,7 @@
                 $("<img>", {
                     id: "stimulus",
                     src: `assets/stimuli/monsters/f${famChoiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
+                    draggable: false,
                 })
             );
 
@@ -75,7 +78,7 @@
             const correctResponse = responses[stimulusCategory];
             $("#input-cell").append(
                 $("<input>", {
-                    id: "confidence-slider",
+                    class: "confidence-slider",
                     type: "range",
                     min: -1.00,
                     max: 1.00,
@@ -103,8 +106,8 @@
                 })
             )
             
-            $("#confidence-slider").on('change', readSlider)
-            $("#confidence-slider").on('input', readSlider)
+            $(".confidence-slider").on('change', readSlider)
+            $(".confidence-slider").on('input', readSlider)
             $(".answer").on('click', shiftSlider)
             
             // Reveal elements and hide JATOS overlay on callback
@@ -119,7 +122,7 @@
                 responseOrder: shuffledResponses,
                 stimOnset: Date.now()
             }
-            $("#submit-button").on('click', data, confidenceResponse)
+            $(".submit-button").on('click', data, confidenceResponse)
         }
 
         jatos.onLoad(function() {
