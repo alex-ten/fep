@@ -1,45 +1,43 @@
-.input-grid {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    /* height: 60vh; */
-    font-size: 10px;
+.tutorial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    height: 100vh;
 }
 
-.input-row {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: auto 70% auto;
-    justify-items: center;
-    /* max-height: 10%; */
+.prompt {
+    width: 60%;
+    margin-top: 20px;
 }
 
-.input-row > .prompt {
-    grid-column-start: 2;
+.usr-inp {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
 }
 
-.input-row > .confidence-slider {
-    grid-column-start: 2;
-}
-
-.input-row > .left {
-    grid-column-start: 1;
-    grid-row-start: 2;
+.answer {
     font-size: 40px;
-    padding: 0 10%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.input-row > .right {
-    grid-column-start: 3;
-    grid-row-start: 2;
-    font-size: 40px;
-    padding: 0 10%;
-    text-align: center;
-}
+/* .answer > span {
+    margin-bottom: .5em;
+} */
 
-.row1 {grid-row-start: 1}
-.row2 {grid-row-start: 2}
-.row3 {grid-row-start: 3}
+.slider-container {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    max-height: 70px;
+}
 
 .playable:hover {
     cursor: pointer
@@ -47,6 +45,7 @@
 
 .feedback-row {
     display: flex;
+    justify-content: center;
 }
 
 .feedback-row > div {

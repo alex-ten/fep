@@ -22,8 +22,10 @@ function readTutorialSlider(event) {
         $(`#answer${event.data.id}-${targ[0]} > span`).addClass("untargeted")
         
     } else {
-        $(`.row${event.data.id} > .answer .bar-bg > .bar-fg`).css({width: "0%"})
-        $(`.row${event.data.id} > .answer > span`).addClass("untargeted")
+        $(`#answer${event.data.id}-left .bar-bg > .bar-fg`).css({width: "0%"})
+        $(`#answer${event.data.id}-right .bar-bg > .bar-fg`).css({width: "0%"})
+        $(`#answer${event.data.id}-left > span`).addClass("untargeted")
+        $(`#answer${event.data.id}-right > span`).addClass("untargeted")
     }
 }
 
