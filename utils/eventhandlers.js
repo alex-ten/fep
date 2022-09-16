@@ -130,13 +130,13 @@ async function confidenceResponse(event) {
 
 function readSlider(event) {
     if (this.value == 0.00) {
-        $(".submit-button").removeClass("enabled")
+        // $(".submit-button").removeClass("enabled")
         $(".submit-button").addClass("disabled")
         $(`#label-mid`).css({opacity: 1.0})
         $(".bar-fg").css({width: "0%"})
     } else {
         $(".submit-button").removeClass("disabled")
-        $(".submit-button").addClass("enabled")
+        // $(".submit-button").addClass("enabled")
 
         const targ = this.value > 0.0 ? ["left", "right"] : ["right", "left"]
         const opac = .2 + Math.abs(this.value) * .8

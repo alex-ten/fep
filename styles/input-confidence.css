@@ -57,7 +57,7 @@ input#answer-right {
     -webkit-appearance: none;
     width: 100%;
     height: 5px;
-    background: #d3d3d3;
+    background: #747474;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -104,7 +104,8 @@ button.submit-button {
     box-shadow: 0 9px #999;
     border: none;
     border-radius: 15px;
-
+    background-color: #4CAF50;
+    cursor: pointer;
     position: relative;
 }
 
@@ -114,11 +115,7 @@ button.disabled {
     opacity: .5;
 }
 
-.enabled #disabled-hint {
-    display: none;
-}
-
-.disabled #disabled-hint {
+#disabled-hint {
     font-size: 12px;
     font-size: 60%;
     visibility: hidden;
@@ -138,28 +135,12 @@ button.disabled {
     visibility: visible;
 }
 
-button.enabled:hover {
-    background-color: #3e8e41
-}
-  
-button.enabled:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
-
-button.enabled {
-    opacity: 1.0;
-    background-color: #4CAF50;
-    cursor: pointer;
-}
-
 /* Credit to dogucan at SO: https://stackoverflow.com/questions/66952087/how-to-create-a-gradient-progress-bar-with-a-fixed-gradient*/
 .bar-bg, .bar-bg-left, .bar-bg-right {
     height: 20px;
     width: 150px;
     margin: 5px 0px;
-    background: white;
+    background: var(--bg);
     position: relative; /* relative here */
     justify-self: center;
 }
@@ -170,8 +151,8 @@ button.enabled {
     height: 20px;
     border-radius: 20px;
      /* this will do the magic */
-    -webkit-mask:linear-gradient(#fff 0 0);
-            mask:linear-gradient(#fff 0 0);
+    -webkit-mask:linear-gradient(var(--bg) 0 0);
+            mask:linear-gradient(var(--bg) 0 0);
             opacity: 1;
 }
 
