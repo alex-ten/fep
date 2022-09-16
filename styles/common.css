@@ -1,5 +1,6 @@
 :root {
     --bg: linen;
+    --accent: rgb(150, 28, 53);
 }
 
 
@@ -16,4 +17,37 @@ body {
     padding: 0px;
     margin: 0px;
     visibility: hidden;
+}
+
+.emphasize {
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.styled-button {
+    grid-row-start: 3;
+    grid-column-start: 2;
+    display: inline-block;
+    height: 2em;
+    width: fit-content;
+    justify-self: center;
+    align-self: end;
+    font-size: inherit;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    box-shadow: 0 9px #999;
+    border: none;
+    border-radius: 15px;
+    background-color: #4CAF50;
+    cursor: pointer;
+    position: relative;
+    padding: .5em 1em;
+}
+
+.styled-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
