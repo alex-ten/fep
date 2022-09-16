@@ -32,12 +32,14 @@
     "choice_free": 2,
     "choice_forced": 3,
     "guess_categorical": 4,
-    "guess_confidence": 5
+    "guess_confidence": 5,
+    "intro_free": 6,
+    "intro_test1": 7
   },
   "default": {
     "overlay": {
       "duration": 500,
-      "background": "white"
+      "background": "linen"
     }
   },
   "famsIncluded": [
