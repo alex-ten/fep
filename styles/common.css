@@ -1,8 +1,14 @@
+:root {
+    --bg: linen;
+}
+
+
 body {
     width: 100%;
     padding: 0px;
     margin: 0px;
     font-family: sans-serif;
+    background-color: var(--bg);
 }
 
 .hidden {
