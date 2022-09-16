@@ -15,7 +15,7 @@
     
     <body>
         <div class="logos">
-            <a href="https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/"><img class="logo" src="assets/logo_hib.webp"/></img></a>
+            <a href="https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/"><img class="logo" src="assets/logo_hib.png"/></img></a>
             <a href="https://uni-tuebingen.de/en/"><img class="logo" src="assets/logo_uni.png"></img></a>
         </div>
 
@@ -52,7 +52,42 @@
                     Your participation in the study is completely voluntary. You may withdraw your participation from the study at any time without providing any reasons. Even if you do prematurely withdraw your participation, you are still entitled to compensation corresponding to the time you spent for the study. Data collected during the study and any personal communications we have will be treated confidentially. Project team members who have access to your personal data are also subject to confidentiality and data secrecy. Furthermore, the results of the study will be published anonymously, i.e., the data cannot trace back to you.
                 </p>
             </div>
-        
+
+            <div>
+                <h2>Research team</h2>
+                <div class="contact-board">
+                    <div class="contact-card">
+                        <div class="person">Dr. Alexandr Ten</div>
+                        <div class="role">Contact person</div>
+                        <div class="contacts">
+                            <p>
+                                <a href="mailto:alexandr.ten@uni-tuebingen.de">✉️ alexandr.ten@uni-tuebingen.de</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="person">Prof. Michiko Sakaki</div>
+                        <div class="role">Principal investigator</div>
+                        <div class="contacts">
+                            <p>
+                                📞 07071 29-76122<br/>
+                                <a href="mailto:michiko.sakaki@uni-tuebingen.de">✉️ michiko.sakaki@uni-tuebingen.de</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="person">Prof. Kou Murayama</div>
+                        <div class="role">Principal investigator</div>
+                        <div class="contacts">
+                        <p>
+                            📞 07071 29-76082<br/>
+                            <a href="mailto:k.murayama@uni-tuebingen.de">✉️ k.murayama@uni-tuebingen.de</a>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="section">
                 <h2>Consent</h2>
                 <b>To participate in the experiment, you agree with the following statements:</b>
@@ -66,47 +101,20 @@
                     <li>I have had the time to read through the information about the study and data protection carefully and am ready to take part in the study.</li>
                 </ul>
             </div>
-        
-            <div class="contacts">
-                <center><h2>Research team</h2></center>
 
-                <div class="contact-card">
-                    <center>
-                        <h4>Dr. Alex Ten</h4>
-                        <i>Contact person</i>
-                    </center>
-                    <p>📞 </p>
-                    <p>✉️ <a href="mailto:alexandr.ten@inria.fr">alexandr.ten@ui-tuebingen.de</a></p>
+            <div class="form">
+                <div class="cb">
+                    <input type="checkbox" name="confirmation1" value="0"/>
+                    <label for="confirmation1">I have read and understood the information on this page</label>
                 </div>
-    
-                <div class="contact-card">
-                    <center>
-                        <h4>Prof. Michiko Sakaki</h4>
-                        <i>Principal investigator</i>
-                    </center>
-                    <p>📞 </p>
-                    <p>✉️ <a href="mailto:michiko.sakaki@uni-tuebingen.de">michiko.sakaki@uni-tuebingen.de</a></p>
+                <div class="cb">
+                    <input type="checkbox" name="confirmation2" value="0"/>
+                    <label for="confirmation2">I declare my consent to participate in the study named "Exploring Monsters"</label>
                 </div>
-    
-                <div class="contact-card">
-                    <center>
-                        <h4>Prof. Kou Murayama</h4>
-                        <i>Principal investigator</i>
-                    </center>
-                    <p>📞 </p>
-                    <p>✉️ <a href="mailto:k.murayama@uni-tuebingen.de">k.murayama@uni-tuebingen.de</a></p>
-                </div>
+                <button class="begin-button">Begin</button>
             </div>
-        </div>
 
-        <div class="form">
-            <input class="cb" type="checkbox" name="confirmation1" value="0"/>
-            <label for="confirmation1">I have read and understood the information on this page</label>
-            <input class="cb" type="checkbox" name="confirmation2" value="0"/>
-            <label for="confirmation2">I declare my consent to participate in the study entitled "Exploring Monsters"</label>
-            <button id="begin-button">Begin</button>
         </div>
-    
     </body>
 
     <script>      
@@ -122,7 +130,7 @@
                 }
             }
 
-            $("#begin-button").on("click", toInstructions);
+            $(".begin-button").on("click", toInstructions);
 
             // Add abort button
             addCustomAbortButton();

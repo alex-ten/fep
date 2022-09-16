@@ -9,7 +9,98 @@
 }
 
 .info {
-    display: block;
-    padding-left: 20vw;
-    padding-right: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw
 }
+
+.section {
+    max-width: 800px;
+    text-align: justify;
+    padding: 0 3em;
+}
+
+.contact-board {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-card {
+    width: 30%;
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: fefdfa;
+    border: 1px solid darkolivegreen;
+}
+
+.contact-card > .person {
+    font-weight: bold;
+    text-align: center;
+}
+
+.contact-card > .role {
+    font-size: .8em;
+}
+.contact-card > .contacts {font-size: .9em;}
+
+input[type=checkbox] {
+    transform: scale(1.6);
+    -ms-transform: scale(1.6);
+    -webkit-transform: scale(1.6);
+    padding: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.form > .cb {
+    margin: .5em 0em;
+}
+.form > .cb > label {
+    margin-left: .5em;
+}
+
+.form > button {
+    margin: 30px 0;
+    width: 2
+}
+
+.begin-button:hover {
+    background-color: #3e8e41
+}
+  
+.begin-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.begin-button {
+    display: inline-block;
+    height: 40px;
+    width: 120px;
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    box-shadow: 0 9px #999;
+    border: none;
+    border-radius: 15px;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+a {
+    color: rgb(150, 28, 53);
+    text-decoration: none;
+  }
