@@ -101,6 +101,6 @@ input[type=checkbox] {
 }
 
 a {
-    color: rgb(150, 28, 53);
+    color: var(--accent);
     text-decoration: none;
   }
