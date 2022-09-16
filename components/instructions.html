@@ -27,40 +27,64 @@
         <div class="instructions">
             <div>
                 <div class="page default">
-                    <h2>1. About the game</h2>
-                    <p>The game involves 3 families of food-picky monsters 👾. Each family consists of various individuals, and each individual has its own unique appearance and favorite food.</p>
+                    <h2>1. Introduction</h2>
+                    <p>You will play a game that involves 3 families of food-picky monsters 👾. Each family consists of various individuals, and each individual has its own unique appearance and favorite food.</p>
                     <p class="emphasize">While the monsters may not realize this, it is possible to predict what they prefer to eat by the way they look! The goal of the game is to figure out who likes to eat what based on how they look. In other words, you need to discover the rule behind food preferences of the monsters.</p>
                     <p>As you haven’t met the monsters yet, you can only guess what food preferences they have. However, you will get a chance to offer them food and see if they like it or not. These clues will help you figure out the rule!</p>
                 </div>
             </div>
             <div>
                 <div class="page default">
-                    <h2>2. Gameplay</h2>
-                    <p>When you interact with a monster family, different monsters from that family will be presented to you. For each monster, you will see two different food options.</p>
-                    <p> You can indicate which food, <i>in your opinion</i>, is more likely to be enjoyed by the monster. To indicate your guess, you use the controls (slider and button) depicted below (more information on the next slide).</p>
+                    <h2>2. Stages</h2>
+                    <p>The task is organized in 3 stages: 
+                    <ol class="default">
+                        <!-- Forced choice instructions -->
+                        <li>First, we will let you interact with the monster families for a total of 216 rounds. In each round, <strong class="emphasize">we</strong> will choose a family for you to interact with. This will take approximately [DURATION_FORCED] minutes to complete.</li>
+                        <!-- Free choice instructions -->
+                        <!-- <li>First, we will let you freely interact with the monster families for a total of 216 rounds. In each round, <strong>you</strong> will choose which family you would like to interact with. This will take approximately [DURATION_FREE] minutes to complete.</li> -->
+                        <li>Then, we will test your knowledge of food preferences across all monster families. We will ask you to provide guesses like in the 1st stage, but you will not receive any feedback during the test. This will take approximately [DURATION_TEST] minutes to complete.</li>
+                        <li>After, we will test your knowledge once again, [DELAY] day(s) later. This second test will be the same as before and will also take approximately [DURATION_TEST] minutes to complete. </li>
+                        <li>Finally, we will ask you a few questions about your thought about our game. This will take approximately [DURATION_QUESTIONS] to complete.</li>
+                    </ol> 
                 </div>
             </div>
             <div>
                 <div class="page default">
-                    <h2>3.1. Controls</h2>
+                    <h2>3. Basic gameplay</h2>
+                    <p>When you interact with a monster family, different monsters from that family will be presented to you. For each monster, you will see two different food options.</p>
+                    <div>
+                        <img class="screenshot" src="assets/screenshots/trial.png">
+                    </div>
+                    <p>You can indicate which food, <i>in your opinion</i>, is more likely to be enjoyed by the monster.</p>
+                </div>
+            </div>
+            <div>
+                <div class="page default">
+                    <h2>4. Guessing food preferences</h2>
                     <p>We will ask you to provide a guess for each monster.</p>
                     <p>For this, you will need to move the slider towards the option that you want to respond with.</p>
-                    <p>For example, if you suspect - <i>but not entirely sure</i> - that a monster likes strawberries, you would move the slider closer towards the strawberry option as depicted below:</p>
+                    <p>For example, if you suspect - <i>but not entirely sure</i> - that a monster likes a certain kind of food (say, bacon), you would move the slider closer towards that food item as depicted below:</p>
+                    <div>
+                        <img class="screenshot" src="assets/screenshots/response_low_conf.png">
+                    </div>
                 </div>
             </div>
             <div>
                 <div class="page default">
-                    <h2>3.2. Controls</h2>
-                    <p>When you move the slider towards one of the options, you will see the <code>Submit guess</code> button change its color to green</p>
-                    <p>You will also see a color bar appear under the selected option.</p>
-                    <p>The color bar is there to indicate the level of confidence in your guess.</p>
+                    <h2>5. Indicating your confidence</h2>
+                    <p>When you move the slider towards one of the options, you will see the 'Submit guess' button change its color to green, indicating that it is now clickable:</p>
+                    <p style="width: 500px"><button class="submit-button disabled">Submit guess</button><span style="margin: 30px">&#8594</span><button class="submit-button">Submit guess</button></p>
+                    <p>You will also see a color bar appear under the selected option -- it is there to indicate the level of confidence in your guess, for example:</p>
+                    <div class="confidence-figure">
+                        <div><img src="assets/screenshots/low_conf.png">This indicates <strong>lower</strong> confidence in guessing bacon</div>
+                        <div><img src="assets/screenshots/high_conf.png">This indicates <strong>higher</strong> confidence in guessing bacon</div>
+                    </div>
                     <p class="emphasize">Please, indicate confidence in your guesses as truthfully as possible!</p>
-                    <p><strong>Note:</strong> you won't be able to proceed without providing a guess. The <code>Submit guess</code> button will be disabled whenever the slider is in the middle of the scale.</p>
                 </div>
             </div>
             <div>
                 <div class="page smaller">
-                    <h2>4. Try it yourself</h2>
+                    <h2>5. Try it yourself</h2>
                     <div class="tutorial">
 
                         <div class="prompt">Move the slider below to express that you are <i>100% sure</i> that the answer is 🍔 (tip: you can simply click on 🍔 to move the slider all the way to the left immediately).</div>
@@ -86,6 +110,7 @@
                             <div id="answer3-right" class="answer right"><span class="untargeted">🍕</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
                             <input type="hidden" id="state3" value="0">
                         </div>
+
                         <div>
                             <p>Please move all sliders according to the instructions.<br/>When a slider is in a correct position, a red dot below will turn green.</p>
                             <div class="feedback-row">
@@ -94,6 +119,7 @@
                                 <div id="feedback-light3"></div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -110,20 +136,8 @@
             </div>
             <div>
                 <div class="page default">
-                    <h2>6. Task stages</h2>
-                    <p>The task is organized in 3 stages: 
-                    <ol class="default">
-                        <li>First, we will let you freely interact with the monster families for a total of 216 rounds. In each round, you will choose which family you would like to interact with. This will take approximately [DURATION_FREE] minutes to complete. First, we will let you interact with the monster families for a total of 216 rounds. In each round, we will choose a family for you to interact with. This will take approximately [DURATION_FORCED] minutes to complete.</li>
-                        <li>Then, we will test your knowledge of food preferences across all monster families. We will ask you to provide guesses like in the 1st stage, but you will not receive any feedback during the test. This will take approximately [DURATION_TEST] minutes to complete.</li>
-                        <li>After, we will test your knowledge once again [DELAY] day(s) later. The test will be the same as before and will also take approximately [DURATION_TEST] minutes to complete. </li>
-                        <li>Finally, we will ask you a few questions about your thought about our game. This will take approximately [DURATION_QUESTIONS] to complete.</li>
-                    </ol> 
-                </div>
-            </div>
-            <div>
-                <div class="page default">
                     <h2>7. Begin task</h2>
-                    <p id="hint-message">It seems that you haven't understood all the instructions yet. Please make sure you've completed all three steps in section <strong>4. Try it yourself</strong>.</p>
+                    <p id="hint-message">It seems that you haven't understood all the instructions yet. Please make sure you've completed all three steps in section 4 (<strong>Try it yourself</strong>).</p>
                     <p id="proceed-message">You are ready to go! Press the button below to begin the task.</p>
                     <!-- play button from https://css.gg/play-button-o -->
                     <div class="go-button disabled"></div>
@@ -151,7 +165,7 @@
             draggable: false,
             adaptiveHeight: true,
             infinite: false,
-            initialSlide: 0
+            initialSlide: 4
         })
     })
 

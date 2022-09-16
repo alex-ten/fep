@@ -37,21 +37,10 @@ body {
     padding: 0 2em;
 }
 
-.page img.instructional {
-    width: 600px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-}
-
-.page img.instructional:hover {
-    cursor: zoom-in;
-}
-
-.page img.instructional.bigger {
+.page img.screenshot {
     width: 900px;
-}
-
-.page img.instructional.bigger:hover {
-    cursor: zoom-out;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    margin-bottom: 20px;
 }
 
 .page h2 {
@@ -76,7 +65,13 @@ body {
 .page > p.emphasize {
     font-weight: bold;
     font-size: 30px;
-    color: tomato;
+    color: var(--accent);
+}
+
+strong.emphasize {
+    font-weight: bold;
+    color: var(--accent);
+    text-transform: uppercase;
 }
 
 /* from https://css.gg/play-button-o */
@@ -132,4 +127,20 @@ img.inline {
     max-height: 3em;
     aspect-ratio: 1 / 1;
     display: inline;
+}
+
+.confidence-figure {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.confidence-figure > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confidence-figure img {
+    width: 130px;
 }
