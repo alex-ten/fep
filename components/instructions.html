@@ -37,57 +37,63 @@
                 <div class="page default">
                     <h2>2. Gameplay</h2>
                     <p>When you interact with a monster family, different monsters from that family will be presented to you. For each monster, you will see two different food options.</p>
-                    <p> You can indicate which food, <i>in your opinion</i>, is more likely to be enjoyed by the monster. To indicate your guess, you will use the controls (slider and button) as shown below.</p>
+                    <p> You can indicate which food, <i>in your opinion</i>, is more likely to be enjoyed by the monster. To indicate your guess, you use the controls (slider and button) depicted below (more information on the next slide).</p>
                 </div>
             </div>
             <div>
                 <div class="page default">
                     <h2>3.1. Controls</h2>
-                    <p>We will ask you to provide a guess for each monster. You will need to move the slider towards the option that you want to respond with. For example, if you suspect - <i>but not entirely sure</i> - that a monster likes strawberries, you would move the slider towards the strawberry option, but, perhaps, not all the way down: </p>
+                    <p>We will ask you to provide a guess for each monster.</p>
+                    <p>For this, you will need to move the slider towards the option that you want to respond with.</p>
+                    <p>For example, if you suspect - <i>but not entirely sure</i> - that a monster likes strawberries, you would move the slider closer towards the strawberry option as depicted below:</p>
                 </div>
             </div>
             <div>
                 <div class="page default">
                     <h2>3.2. Controls</h2>
-                    <p>When you move the slider towards one of the options, you will see the <code>'Submit guess'</code> button change its color to green</p>
+                    <p>When you move the slider towards one of the options, you will see the <code>Submit guess</code> button change its color to green</p>
                     <p>You will also see a color bar appear under the selected option.</p>
                     <p>The color bar is there to indicate the level of confidence in your guess.</p>
                     <p class="emphasize">Please, indicate confidence in your guesses as truthfully as possible!</p>
-                    <p>Note, that you won't be able to proceed without providing a guess in favor of one of the options. The <code>'Submit guess'</code> button will be disabled if the slider is in the middle of the scale.</p>
+                    <p><strong>Note:</strong> you won't be able to proceed without providing a guess. The <code>Submit guess</code> button will be disabled whenever the slider is in the middle of the scale.</p>
                 </div>
             </div>
             <div>
                 <div class="page smaller">
                     <h2>4. Try it yourself</h2>
-                    <div class="input-grid">
-                        <div class="input-row row1">
-                            <div id="answer1-left" class="answer left"><span class="untargeted">🍔</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div>
-                            </div>
-                            <p class="prompt">Move the slider below to express that you are <i>100% sure</i> that the answer is 🍔 (tip: you can simply click on 🍔 to move the slider all the way to the left immediately).</p>
-                            <input id="inp1" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00">
+                    <div class="tutorial">
+
+                        <div class="prompt">Move the slider below to express that you are <i>100% sure</i> that the answer is 🍔 (tip: you can simply click on 🍔 to move the slider all the way to the left immediately).</div>
+                        <div class="usr-inp">
+                            <div id="answer1-left" class="answer left"><span class="untargeted">🍔</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
+                            <div class="slider-container"><input id="inp1" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00"></div>
                             <div id="answer1-right" class="answer right"><span class="untargeted">🍇</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
                             <input type="hidden" id="state1" value="0">
                         </div>
-                        <div class="input-row row2">
+                        
+                        <div class="prompt">Move the slider below to express that you are <i>very unsure</i> about the answer, but you would like see if 🥝 is correct.</div>
+                        <div class="usr-inp">
                             <div id="answer2-left" class="answer left"><span class="untargeted">🥜</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
-                            <p class="prompt">Move the slider below to express that you are <i>very unsure</i> about the answer, but you would like see if 🥝 is correct.</p>
-                            <input id="inp2" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00">
+                            <div class="slider-container"><input id="inp2" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00"></div>
                             <div id="answer2-right" class="answer right"><span class="untargeted">🥝</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
                             <input type="hidden" id="state2" value="0">
                         </div>
-                        <div class="input-row row3">
+
+                        <div class="prompt">Move the slider below to express that you are <i>somewhat</i> confident that the answer is 🫐.</div>
+                        <div class="usr-inp">
                             <div id="answer3-left" class="answer left"><span class="untargeted">🫐</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
-                            <p class="prompt">Move the slider below to express that you are <i>somewhat</i> confident that the answer is 🫐.</p>
-                            <input id="inp3" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00">
+                            <div class="slider-container"><input id="inp3" class="confidence-slider" type="range" min="-1.00" max="1.00" step="0.01" value="0.00"></div>
                             <div id="answer3-right" class="answer right"><span class="untargeted">🍕</span><div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div></div>
                             <input type="hidden" id="state3" value="0">
                         </div>
-                    </div>
-                    <p>Please move all sliders according to the instructions.<br/>When a slider is in a correct position, a red dot below will turn green.</p>
-                    <div class="feedback-row">
-                        <div id="feedback-light1"></div>
-                        <div id="feedback-light2"></div>
-                        <div id="feedback-light3"></div>
+                        <div>
+                            <p>Please move all sliders according to the instructions.<br/>When a slider is in a correct position, a red dot below will turn green.</p>
+                            <div class="feedback-row">
+                                <div id="feedback-light1"></div>
+                                <div id="feedback-light2"></div>
+                                <div id="feedback-light3"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,7 +151,7 @@
             draggable: false,
             adaptiveHeight: true,
             infinite: false,
-            initialSlide: 4
+            initialSlide: 0
         })
     })
 
