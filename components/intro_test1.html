@@ -7,19 +7,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MeMo-JATOS</title>
         <link rel="stylesheet" href="styles/common.css">
+        <link rel="stylesheet" href="styles/intro.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="utils/misc.js"></script>
         <script src="utils/init.js"></script>
     </head>
     <body>
-        <h1>YOU ARE STARTING TEST...</h1>
-        <button id="proceed">Proceed</button>
+        <div class="center-h">
+            <div class="center-v">
+                <div>
+                    <h1>YOU ARE BEGINNING TEST #1</h1>
+                    <p>Please make sure there are no distractions around you.</p>
+                    <p>You will play 108 rounds of guessing. Try to feed as many monsters as possible.</p>
+                    <p class="emphasize">ℹ️ Since this is the test, you will not receive any feedback on your guesses.</p>
+                </div>
+                <div>
+
+                </div>
+                <div>
+                    <button class="styled-button" id="proceed">Proceed</button>
+                </div>
+            </div>
+        </div>
     </body>
 
     <script>
         jatos.onLoad(
-            $("#proceed").on('click', beginStage)
+            $("#proceed").on('click', initTrial)
         )
     </script>
 </html>
