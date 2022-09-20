@@ -10,8 +10,12 @@ function readTutorialSlider(event) {
     }
     if ($("#state1").val()=="1" && $("#state2").val()=="1" && $("#state3").val()=="1") {
         $(".go-button").removeClass("disabled")
+        $("#hint-message").css({display: 'none'})
+        $("#proceed-message").css({display: 'block', visibility: 'visible'})
     } else {
         $(".go-button").addClass("disabled")
+        $("#hint-message").css({display: 'block'})
+        $("#proceed-message").css({display: 'none', visibility: 'hidden'})
     }
     const opac = .2 + Math.abs(this.value) * .8
     if (Math.abs(this.value) != 0.0) {
