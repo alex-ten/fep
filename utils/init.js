@@ -119,7 +119,11 @@ function initTrial() { //intro = false
         if (jatos.studySessionData.currentStage.scheduleParams.choiceAnimation) {
             jatos.startComponentByPos(getComponentPos("choice_forced"))  // redirect to choice_forced component (plays animation automatically)
         } else {
-            jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component)) // otherwise, redirect to the guessing component
+            if (jatos.studySessionData.currentStage.pseudoComponent) {
+                jatos.startComponentByPos(getComponentPos("pseudocomponent"))
+            } else {
+                jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component)) // otherwise, redirect to the guessing component
+            }
         }
     // If schedule has not been initialized (== null)
     } else {
