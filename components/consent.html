@@ -120,16 +120,12 @@
     <script>      
         jatos.onLoad(function() {
             function toInstructions() {
-                const cbs = $(".cb").map(function() {
-                    return this.checked;
-                }).get();
-                if (all(cbs)) {
+                if ($('.cb > input:checked').length == $('.cb > input').length) {
                     jatos.startComponentByPos(getComponentPos("instructions"))
                 } else {
                     alert("Please acknowledge your understanding of participation terms and state your consent to proceed.")
                 }
             }
-
             $(".begin-button").on("click", toInstructions);
 
             // Add abort button
