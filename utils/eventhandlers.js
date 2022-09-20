@@ -3,7 +3,9 @@ function beginTask() {
         initSession()       // Defined in initsess.js
         let initData = {
             "famRuleMap": jatos.studySessionData.famRuleMap,
-            "famCatMap": jatos.studySessionData.famCatMap
+            "famCatMap": jatos.studySessionData.famCatMap,
+            "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
+            "prolificStudyID": jatos.urlQueryParameters.STUDY_ID,
         }
         jatos.appendResultData(initData)
         nextTrialOrStage(true)
