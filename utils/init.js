@@ -39,16 +39,16 @@ function initSession() {
     // Create a list of coded labels for each stimulus family
     let famCodes = jatos.studyJsonInput.famsIncluded
 
-    // Create a list of codes for category labels (just numbers from 0 to 17)
-    let catCodes = [...Array(18).keys()];
+    // // Create a list of codes for category labels (just numbers from 0 to 17)
+    // let catCodes = [...Array(18).keys()];
 
-    // Randomly sample unique and nonoverlapping category sets for each stimulus family
-    shuffle(catCodes)
-    let k = 2;
-    let catSets = [];
-    for (let i = 0; i < k *famCodes.length; i += k) {
-        catSets.push([catCodes[i], catCodes[i+1]])
-    };
+    // // Randomly sample unique and nonoverlapping category sets for each stimulus family
+    // shuffle(catCodes)
+    // let k = 2;
+    // let catSets = [];
+    // for (let i = 0; i < k *famCodes.length; i += k) {
+    //     catSets.push([catCodes[i], catCodes[i+1]])
+    // };
 
     // Create instructions for activity rules
     const actRules = {
@@ -73,12 +73,19 @@ function initSession() {
     });
     jatos.studySessionData["famRuleMap"] = famRuleMap
 
-    // Create a mapping from stimulus family labels to the respective category sets
-    let famCatMap = {};
-    famCodes.forEach((element, index) => {
-        famCatMap[element] = catSets[index]
-    });
-    jatos.studySessionData["famCatMap"] = famCatMap
+    // // Create a mapping from stimulus family labels to the respective category sets
+    // let famCatMap = {};
+    // famCodes.forEach((element, index) => {
+    //     famCatMap[element] = catSets[index]
+    // });
+    // jatos.studySessionData["famCatMap"] = famCatMap
+    jatos.studySessionData["famCatMap"] = {
+        1: [0, 1],
+        2: [2, 3],
+        3: [4, 5],
+        4: [6, 7],
+    }
+
 
     jatos.studySessionData["taskStack"] = [...jatos.studyJsonInput.taskStack]
     jatos.studySessionData["totalTrialsComplete"] = 0
