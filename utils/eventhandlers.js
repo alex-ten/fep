@@ -1,13 +1,13 @@
 function beginTask() {
     if (!$(this).hasClass("disabled")) {
         initSession()       // Defined in initsess.js
-        let initData = {
-            "famRuleMap": jatos.studySessionData.famRuleMap,
-            "famCatMap": jatos.studySessionData.famCatMap,
-            "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
-            "prolificStudyID": jatos.urlQueryParameters.STUDY_ID,
-        }
-        jatos.appendResultData(initData)
+        // let initData = {
+        //     "famRuleMap": jatos.studySessionData.famRuleMap,
+        //     "famCatMap": jatos.studySessionData.famCatMap,
+        //     "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
+        //     "prolificStudyID": jatos.urlQueryParameters.STUDY_ID,
+        // }
+        // jatos.appendResultData(initData)
         nextTrialOrStage(true)
     }
 }
@@ -79,7 +79,8 @@ async function categoricalResponse(event) {
     }
     // Save data
     let resultData = {
-        "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
+        "prolificPID": jatos.urlQueryParameters.PROLIFIC_PID,
+        "prolificStudyID": jatos.urlQueryParameters.STUDY_ID,
         "stage": jatos.studySessionData.currentStage.name,
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
         "trialsComplete": jatos.studySessionData.currentStage.trialsComplete,
@@ -112,7 +113,8 @@ async function confidenceResponse(event) {
     }
     // Save data
     let resultData = {
-        "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
+        "prolificPID": jatos.urlQueryParameters.PROLIFIC_PID,
+        "prolificStudyID": jatos.urlQueryParameters.STUDY_ID,
         "stage": jatos.studySessionData.currentStage.name,
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
         "trialsComplete": jatos.studySessionData.currentStage.trialsComplete,
