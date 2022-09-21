@@ -53,7 +53,7 @@ function initSession() {
     // Create instructions for activity rules
     const actRules = {
         '1d1': init1d1(),                       // 1 variable dimension; 1 relevant
-        '2d1': init2d1(),                       // 2 variable dimensions; 1 relevant
+        '2d1': [[null, null], [true, false]],      // 2 variable dimensions; 1 relevant
         '2d2': [[null, null], [true, true]],    // 2 variable dimensions; 2 relevant
         '2d0': [[null, null], [false, false]]   // 2 variable dumensions; 0 relevant
     };
