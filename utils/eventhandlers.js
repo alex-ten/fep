@@ -79,6 +79,7 @@ async function categoricalResponse(event) {
     }
     // Save data
     let resultData = {
+        "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
         "stage": jatos.studySessionData.currentStage.name,
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
         "trialsComplete": jatos.studySessionData.currentStage.trialsComplete,
@@ -111,6 +112,7 @@ async function confidenceResponse(event) {
     }
     // Save data
     let resultData = {
+        "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
         "stage": jatos.studySessionData.currentStage.name,
         "feedbackOn": jatos.studySessionData.currentStage.feedback,
         "trialsComplete": jatos.studySessionData.currentStage.trialsComplete,
