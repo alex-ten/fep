@@ -133,7 +133,10 @@
             }
             $(".begin-button").on("click", toInstructions);
 
-            beginTask()
+            if (jatos.studyJsonInput.skipInstructions) {
+                initSession()       // Defined in initsess.js
+                nextTrialOrStage(true)
+            }
 
             // Add abort button
             addCustomAbortButton();

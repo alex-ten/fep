@@ -1,5 +1,5 @@
 function beginTask() {
-    if (!$(this).hasClass("disabled") || jatos.studyJsonInput.debug) {
+    if (!$(this).hasClass("disabled")) {
         initSession()       // Defined in initsess.js
         // let initData = {
         //     "famRuleMap": jatos.studySessionData.famRuleMap,
