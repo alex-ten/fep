@@ -80,9 +80,9 @@ function initSession() {
     // });
     // jatos.studySessionData["famCatMap"] = famCatMap
     jatos.studySessionData["famCatMap"] = {
-        1: [0, 1],
-        2: [2, 3],
-        3: [4, 5],
+        1: [0, 2],
+        2: [1, 4],
+        3: [3, 5],
         4: [6, 7],
     }
 
