@@ -1,13 +1,6 @@
 function beginTask() {
     if (!$(this).hasClass("disabled")) {
         initSession()       // Defined in initsess.js
-        // let initData = {
-        //     "famRuleMap": jatos.studySessionData.famRuleMap,
-        //     "famCatMap": jatos.studySessionData.famCatMap,
-        //     "prolificID": jatos.urlQueryParameters.PROLIFIC_PID,
-        //     "prolificStudyID": jatos.urlQueryParameters.STUDY_ID,
-        // }
-        // jatos.appendResultData(initData)
         nextTrialOrStage(true)
     }
 }
@@ -15,7 +8,7 @@ function beginTask() {
 function nextTrialOrStage(initNewStage=false) {
     // If `maxTrials` of the current stage is reached, either
     // (1) Initialize and start next stage, or
-    // (2) End study
+    // (2) Go to debriefing component
     if (initNewStage || jatos.studySessionData.currentStage.trialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
         if (jatos.studySessionData.taskStack.length) {
             const newStage = initNextStage();
@@ -25,12 +18,16 @@ function nextTrialOrStage(initNewStage=false) {
                 initTrial()
             }
         } else {
-            jatos.endStudy()
+            showOutro()
         }
     // Otherwise, initialize new trial
     } else {
         initTrial()
     }
+}
+
+function showOutro() {
+    jatos.startComponentByPos(getComponentPos("outro"))
 }
 
 function execChoice() {
