@@ -3,7 +3,7 @@ function getNextFeatures() {
     const count = jatos.studySessionData.currentStage.trialsPerFam[choice];
     const epoch = jatos.studySessionData.currentStage.epochs[choice];
     const ind = count % epoch.length
-    if (ind == 0) {
+    if (ind == 0 && jatos.studySessionData.popChoice) {
         jatos.studySessionData.currentStage.epochs[choice] = shuffle(epoch)
     }
     return jatos.studySessionData.currentStage.epochs[choice][ind];
@@ -41,11 +41,11 @@ function getStimCat(relDims) {
     if (relDims.length === 0) { // R rule: category is random
         return randInt(2);
     } else if (relDims.length == 1) { // 1D and i1D rule: category based on 1 relevant dim
-        return relDims[0] < 3
+        return relDims[0] < 4
             ? 1
             : 0;
     } else if (relDims.length == 2) {
-        return xnor(relDims[0] < 3, relDims[1] < 3)
+        return xnor(relDims[0] < 4, relDims[1] < 4)
             ? 1
             : 0;
     }

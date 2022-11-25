@@ -91,7 +91,7 @@
                 $("<input>", {
                     type: "image",
                     class: "answer untargeted",
-                    id: "answer-right",
+                    id: "answer-left",
                     src: `assets/stimuli/food/fi${shuffledResponses[0]}.png`,
                     value: `${shuffledResponses[0]}`
                 })
@@ -100,7 +100,7 @@
                 $("<input>", {
                     type: "image",
                     class: "answer untargeted",
-                    id: "answer-left",
+                    id: "answer-right",
                     src: `assets/stimuli/food/fi${shuffledResponses[1]}.png`,
                     value: `${shuffledResponses[1]}`
 
@@ -115,7 +115,9 @@
             revealElements(jatos.removeOverlay)
 
             // Link `confidenceResponse` function with the submit button
+            console.log(shuffledResponses)
             data = {
+                confidenceSlider: $(".confidence-slider"), // TODO does this work???
                 correctResponse: correctResponse,
                 famChoiceInd: famChoiceInd,
                 stimFeatures: stimulusFeatures,

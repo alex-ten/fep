@@ -1,5 +1,5 @@
 function beginTask() {
-    if (!$(this).hasClass("disabled")) {
+    if (!$(this).hasClass("disabled") || jatos.studyJsonInput.debug) {
         initSession()       // Defined in initsess.js
         // let initData = {
         //     "famRuleMap": jatos.studySessionData.famRuleMap,
@@ -9,6 +9,27 @@ function beginTask() {
         // }
         // jatos.appendResultData(initData)
         nextTrialOrStage(true)
+    }
+}
+
+function nextTrialOrStage(initNewStage=false) {
+    // If `maxTrials` of the current stage is reached, either
+    // (1) Initialize and start next stage, or
+    // (2) End study
+    if (initNewStage || jatos.studySessionData.currentStage.trialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
+        if (jatos.studySessionData.taskStack.length) {
+            const newStage = initNextStage();
+            if (newStage.intro != null) {
+                showIntro()
+            } else {
+                initTrial()
+            }
+        } else {
+            jatos.endStudy()
+        }
+    // Otherwise, initialize new trial
+    } else {
+        initTrial()
     }
 }
 
@@ -36,27 +57,6 @@ function forceChoice() {
     jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component));
 }
 
-function nextTrialOrStage(initNewStage=false) {
-    // If `maxTrials` of the current stage is reached, either
-    // (1) Initialize and start next stage, or
-    // (2) End study
-    if (initNewStage || jatos.studySessionData.currentStage.trialsComplete >= jatos.studySessionData.currentStage.maxTrials) {
-        if (jatos.studySessionData.taskStack.length) {
-            const newStage = initNextStage();
-            if (newStage.intro != null) {
-                showIntro()
-            } else {
-                initTrial()
-            }
-        } else {
-            jatos.endStudy()
-        }
-    // Otherwise, initialize new trial
-    } else {
-        initTrial()
-    }
-}
-
 function promiseFeedback(correct){
 // Return a Promise that executes feedback presentation and resolve it only when audio stops playing
     return new Promise(resolve => {
@@ -70,6 +70,7 @@ function promiseFeedback(correct){
 }
 
 async function categoricalResponse(event) {
+    jatos.studySessionData.popChoice = true
     incrementTrialCounts()
 
     const correct = this.value == event.data.correctResponse;
@@ -104,8 +105,9 @@ async function confidenceResponse(event) {
         alert("Please, make a guess in favor of one option, even if are not confident in either option. To make a guess, move the green slider towards the option you would like to answer with.")
         return;
     }
+    jatos.studySessionData.popChoice = true
     incrementTrialCounts()
-    const guess = event.data.responseOrder[event.data.confidence > 0 ? 1 : 0];
+    const guess = event.data.responseOrder[event.data.confidenceSlider.val() > 0 ? 1 : 0];
     const correct = guess == event.data.correctResponse;
     if (jatos.studySessionData.currentStage.feedback) {
         // Wait until feedback is presented and audio track stops playing
@@ -130,7 +132,6 @@ async function confidenceResponse(event) {
         "rt": Date.now() - event.data.stimOnset
     };
     jatos.appendResultData(resultData);
-
     nextTrialOrStage();
 }
 
