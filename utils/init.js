@@ -93,6 +93,7 @@ function initSession() {
 
 function initNextStage() {
     const stage = jatos.studySessionData.taskStack.shift()
+    jatos.studySessionData["popChoice"] = true
     jatos.studySessionData["currentStage"] = stage
     jatos.studySessionData.currentStage["trialsComplete"] = 0
     jatos.studySessionData.currentStage["trialsPerFam"] = {}
@@ -121,7 +122,11 @@ function initNextStage() {
 function initTrial() { //intro = false
     // If schedule has been initialized for current stage
     if (jatos.studySessionData.currentStage.schedule !== null) {
-        jatos.studySessionData["choice"] = jatos.studySessionData.currentStage.schedule.shift() // pop the first forced choice from schedule
+        // `shift` only if response was submitted
+        if (jatos.studySessionData.popChoice) {
+            jatos.studySessionData["choice"] = jatos.studySessionData.currentStage.schedule.shift() // pop the first forced choice from schedule
+            jatos.studySessionData.popChoice = false
+        }
         // If animation setting for the schedule is on
         if (jatos.studySessionData.currentStage.scheduleParams.choiceAnimation) {
             jatos.startComponentByPos(getComponentPos("choice_forced"))  // redirect to choice_forced component (plays animation automatically)
