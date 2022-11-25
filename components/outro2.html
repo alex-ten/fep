@@ -18,16 +18,16 @@
         <div class="center-h">
             <div class="center-v">
                 <div>
-                    <h1>You are beginning practice stage</h1>
-                    <p>Please make sure there are no distractions around you.</p>
-                    <p>Your will play 216 rounds of choosing and guessing. Take as much time as you need, but try not to interrupt your play.</p>
-                    <p class="emphasize">&#8505; To choose a family, click on it twice: once to select and once to confirm.</p>
+                    <h1>Thank you very much!</h1>
+                    <p>You have reached the end of Part II.</p>
+                    <p>We really appreciate your time!</p>
+                    <p>To finalize the completion of this part, click on the button below.</p>
                 </div>
                 <div>
 
                 </div>
                 <div>
-                    <button class="styled-button" id="proceed">Proceed</button>
+                    <button class="styled-button" id="proceed">Finish Part II</button>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
 
     <script>
         jatos.onLoad(
-            $("#proceed").on('click', initTrial)
+            $("#proceed").on('click', jatos.endStudy())
         )
     </script>
 </html>

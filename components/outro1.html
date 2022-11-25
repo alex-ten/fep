@@ -11,8 +11,6 @@
         <link rel="stylesheet" href="styles/intro.css">
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="utils/misc.js"></script>
-        <script src="utils/init.js"></script>
     </head>
     <body>
         <div class="center-h">
@@ -20,7 +18,7 @@
                 <div>
                     <h1>Thank you very much!</h1>
                     <p>You have reached the end of Part I.</p>
-                    <p>Please don't forget to come back tomorrow to participate in Part II for [AMOUNT].</p>
+                    <p>Please don't forget to come back tomorrow to participate in Part II. You will be paid [AMOUNT] in addition to what you have earned today.</p>
                     <p>To finalize the completion of this part, click on the button below.</p>
                     <p class="emphasize">&#8505; Your participation in <strong>both</strong> parts our study is crucial for our research!</p>
                 </div>
@@ -36,7 +34,7 @@
 
     <script>
         jatos.onLoad(
-            $("#proceed").on('click', )
+            $("#proceed").on('click', jatos.endStudy)
         )
     </script>
 </html>
