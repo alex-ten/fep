@@ -84,8 +84,17 @@
             </div>
             <div>
                 <div class="page smaller">
-                    <h2>5. Try it yourself</h2>
+                    <h2>6. Try it yourself</h2>
                     <div class="tutorial">
+
+                        <div>
+                            <p>Please move all 3 sliders according to the instructions.<br/>When a slider is in a correct position, a red dot below will turn green.</p>
+                            <div class="feedback-row">
+                                <div id="feedback-light1"></div>
+                                <div id="feedback-light2"></div>
+                                <div id="feedback-light3"></div>
+                            </div>
+                        </div>
 
                         <div class="prompt">Move the slider below to express that you are <i>100% sure</i> that the answer is &#127816; (tip: you can simply click on &#127816; to move the slider all the way to the left immediately).</div>
                         <div class="usr-inp">
@@ -111,21 +120,12 @@
                             <input type="hidden" id="state3" value="0">
                         </div>
 
-                        <div>
-                            <p>Please move all sliders according to the instructions.<br/>When a slider is in a correct position, a red dot below will turn green.</p>
-                            <div class="feedback-row">
-                                <div id="feedback-light1"></div>
-                                <div id="feedback-light2"></div>
-                                <div id="feedback-light3"></div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
             <div>
                 <div class="page default">
-                    <h2>5. Feedback</h2>
+                    <h2>7. Feedback</h2>
                     <p>After submitting your guess, you will receive visual and auditory feedback on whether your guess was correct. Click on the speech-bubbles below to hear the sound.</p>
                     <p><i>Please, ensure your volume is at a comfortable listening level.</i></p>
                     <p>Monsters will say <img id="yum" class="inline playable" src="assets/stimuli/feedback/yum.png"> when they <strong>like</strong> the food.</p>
@@ -136,8 +136,8 @@
             </div>
             <div>
                 <div class="page default">
-                    <h2>7. Begin task</h2>
-                    <p id="hint-message">Please make sure you have correctly followed all the instructions in section 4 (<strong>Try it yourself</strong>).</p>
+                    <h2>Begin task</h2>
+                    <p id="hint-message">In order to begin the task, please make sure you have correctly followed all the instructions in section <strong class="goto6" style="cursor: pointer">6. Try it yourself</strong>.</p>
                     <p id="proceed-message">You are ready to go! Press the button below to begin the task.</p>
                     <!-- play button from https://css.gg/play-button-o -->
                     <div class="go-button disabled"></div>
@@ -178,6 +178,8 @@
     }
     $("img#yum").on('click', playYum)
     $("img#yuck").on('click', playYuck)
+    
+    $(".goto6").on('click', () => {$('.instructions').slick('slickGoTo', 5)})
 
     $(".go-button").on('click', beginTask)
 
