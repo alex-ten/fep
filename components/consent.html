@@ -12,12 +12,16 @@
         <script src="jatos.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="utils/misc.js"></script>
+        <script src="utils/randfuncs.js"></script>
+        <script src="utils/stimgen.js"></script>
+        <script src="utils/init.js"></script>
+        <script src="utils/eventhandlers.js"></script>
     </head>
     
     <body>
         <div class="logos">
-            <a href="https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/"><img class="logo" src="assets/logo_hib.png"/></img></a>
-            <a href="https://uni-tuebingen.de/en/"><img class="logo" src="assets/logo_uni.png"></img></a>
+            <a href="https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/" target="_blank"><img class="logo" src="assets/logo_hib.png"/></img></a>
+            <a href="https://uni-tuebingen.de/en/" target="_blank"><img class="logo" src="assets/logo_uni.png"></img></a>
         </div>
 
         <div class="info">
@@ -25,7 +29,7 @@
             <div class="section">
                 <h2>General Participant Information About the Study </h2>
                 <p>
-                    Thank you for your interest in participating in our study. The study is conducted by Alexandr Ten, Michiko Sakaki, Kou Murayama, and collaborators at the Hector Institute for Educational Sciences and Psychology of the University of Tübingen. In this study, we will ask you to play a guessing game in which you will explore food preferences of fictional monsters. We will also ask you to fill out several questionnaires on your demographic characteristics and your beliefs. Some of you may be asked to complete a second part of the study [DELAY] later.
+                    Thank you for your interest in participating in our study. The study is conducted by Alexandr Ten, Michiko Sakaki, Kou Murayama, and collaborators at the Hector Institute for Educational Sciences and Psychology of the University of Tübingen. In this study, we will ask you to play a guessing game in which you will explore food preferences of fictional monsters. We will also ask you to fill out several questionnaires on your demographic characteristics and your beliefs. Some of you may be asked to complete a second part of the study 1 day later.
                 </p>
                 <p>
                     To participate, you MUST meet the following criteria: 
@@ -36,7 +40,7 @@
                     </ul>
                 </p>
                 <p>
-                    The study will take [DURATION]. After completing the study, you will be reimbursed with [AMOUNT]/hour.
+                    The study will take about 1 hour. After completing the study, you will be reimbursed with [AMOUNT]/hour.
                 </p>
             </div>
     
@@ -128,6 +132,8 @@
                 }
             }
             $(".begin-button").on("click", toInstructions);
+
+            beginTask()
 
             // Add abort button
             addCustomAbortButton();
