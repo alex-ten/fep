@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MeMo-JATOS</title>
+        <link rel="icon" href="assets/hector_favicon.png">
+        <link rel="stylesheet" href="styles/common.css">
+        <link rel="stylesheet" href="styles/intro.css">
+        <script src="jatos.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="utils/misc.js"></script>
+        <script src="utils/init.js"></script>
+    </head>
+    <body>
+        <div class="center-h">
+            <div class="center-v">
+                <div>
+                    <h1>Don't forget</h1>
+                    <p>To finalize the completion of this part, click on the button below.</p>
+                </div>
+                <div>
+
+                </div>
+                <div>
+                    <button class="styled-button" id="proceed">Finish Part II</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        jatos.onLoad(
+            $("#proceed").on('click', jatos.endStudy())
+        )
+    </script>
+</html>

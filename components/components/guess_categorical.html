@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MeMo-JATOS</title>
+        <link rel="icon" href="assets/hector_favicon.png">
+        <link rel="stylesheet" href="styles/common.css">
+        <link rel="stylesheet" href="styles/guess.css">
+        <link rel="stylesheet" href="styles/input-categorical.css">
+        <script src="jatos.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="utils/misc.js"></script>
+        <script src="utils/randfuncs.js"></script>
+        <script src="utils/init.js"></script>
+        <script src="utils/stimgen.js"></script>
+        <script src="utils/eventhandlers.js"></script>
+    </head>
+    <body>
+        <div class="hidden">
+            <div id="grid">
+                <div id="tcount">Trials completed: </div>
+                <div id="prompt"><h1>What would this monster like to eat?</h1></div>
+                <div id="stimulus-flex-row">
+                    <div class="side-block" id="feedback-block">
+                        <img id="correct-image" src="assets/stimuli/feedback/yum.png">
+                        <img id="incorrect-image" src="assets/stimuli/feedback/yuck.png">
+                    </div>
+                    <div class="side-block" id="empty-block"></div>
+                </div>
+                <div id="input-cell"></div>
+            </div>
+            <audio id="correct-sound" src="assets/stimuli/feedback/mmm.mp3" type="audio/mp3"></audio>
+            <audio id="incorrect-sound" src="assets/stimuli/feedback/raspberry_grosser.mp3" type="audio/mp3"></audio>
+            <div id="mask"></div>
+        </div>
+    </body>
+
+    <script>
+        function main() {
+            // Display number of trials completed
+            $("#tcount").prop({
+                innerHTML: `Trials completed: ${jatos.studySessionData.currentStage.trialsComplete} / ${jatos.studySessionData.currentStage.maxTrials}`,
+            });
+            
+            // Generate stimulus parameters
+            const famChoiceInd = parseInt(jatos.studySessionData.choice);
+            const [dimVariance, dimRelevance, ruleLabel] = jatos.studySessionData.famRuleMap[famChoiceInd];
+            const stimulusFeatures = genStimFeatures(dimVariance);
+            const relevantFeatures = getRelevantFeatures(stimulusFeatures, dimRelevance);
+            const stimulusCategory = getStimCat(relevantFeatures); // Either 0 or 1, depending on the rule and relevant features
+            const stimulusRule = dimRelevance;
+            
+            // Add stimulus image
+            $("#feedback-block").after(
+                $("<img>", {
+                    id: "stimulus",
+                    src: `assets/stimuli/monsters/f${famChoiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
+                    draggable: false,
+                })
+            );
+
+            // Add response images
+            const responses = jatos.studySessionData.famCatMap[famChoiceInd];
+            const shuffledResponses = shuffle([...responses]);
+            const correctResponse = responses[stimulusCategory];
+            for (i = 0; i < responses.length; i++) {
+                $("#input-cell").prepend(
+                    $("<input>", {
+                        class: "response",
+                        type: "image",
+                        src: `assets/stimuli/food/fi${shuffledResponses[i]}.png`,
+                        value: `${shuffledResponses[i]}`,
+                        alt: "Clickable",
+                    })
+                )
+            };
+            
+            // Reveal elements and hide JATOS overlay on callback
+            revealElements(jatos.removeOverlay)
+
+            // Link `registerResponse` function with the click event of all response buttons
+            data = {
+                correctResponse: correctResponse,
+                famChoiceInd: famChoiceInd,
+                stimFeatures: stimulusFeatures,
+                ruleLabel: ruleLabel,
+                responseOrder: shuffledResponses,
+                stimOnset: Date.now()
+            }
+            $("#input-cell").children().on('click', data, categoricalResponse)
+        }
+
+        jatos.onLoad(function() {
+            // Add abort button
+            addCustomAbortButton()
+
+            // Add overlay
+            jatos.showOverlay({
+                "text": "+", 
+                "imgUrl": "",
+                "style": `background-color: ${getOverlaySetting("background")}; width: 100%; height: 100%; font-size: 2em; opacity: 1; text-shadow: none;`
+            })
+
+            // Setup and reveal remaining elements
+            setTimeout(main, getOverlaySetting("duration"))
+        })
+      </script>
+</html>
