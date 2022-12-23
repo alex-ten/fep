@@ -16,10 +16,10 @@
         <div class="center-h">
             <div class="center-v">
                 <div>
-                    <h1>Thank you very much!</h1>
+                    <h1>One last thing before you go</h1>
                     <p>You have reached the end of Part I.</p>
-                    <p>Please don't forget to come back tomorrow to participate in Part II. You will be paid [AMOUNT] in addition to what you have earned today.</p>
-                    <p>To finalize the completion of this part, click on the button below.</p>
+                    <p>Please don't forget to come back tomorrow to participate in Part II. You will be paid £2.25 in addition to what you have earned today.</p>
+                    <p>To finalize the completion of today's part, click on the button below.</p>
                     <p class="emphasize">&#8505; Your participation in <strong>both</strong> parts our study is crucial for our research!</p>
                 </div>
                 <div>
@@ -33,8 +33,8 @@
     </body>
 
     <script>
-        jatos.onLoad(
+        jatos.onLoad( function() {
             $("#proceed").on('click', jatos.endStudy)
-        )
+        })
     </script>
 </html>

@@ -18,9 +18,7 @@
         <div class="center-h">
             <div class="center-v">
                 <div>
-                    <h1>Thank you very much!</h1>
-                    <p>You have reached the end of Part II.</p>
-                    <p>We really appreciate your time!</p>
+                    <h1>Don't forget</h1>
                     <p>To finalize the completion of this part, click on the button below.</p>
                 </div>
                 <div>
@@ -34,8 +32,8 @@
     </body>
 
     <script>
-        jatos.onLoad(
-            $("#proceed").on('click', jatos.endStudy())
-        )
+        jatos.onLoad( function() {
+            $("#proceed").on('click', jatos.endStudy)
+        })
     </script>
 </html>
