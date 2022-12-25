@@ -43,6 +43,10 @@ function getStimCat(features, rule) {
             return xnor(features[0] < 4, features[1] < 4) ? 1 : 0
         case '2d0':
             return randInt(2)
+        case 'fi':
+            return (features[0] + features[1] > 7) ? 1 : 0
+        default:
+            console.log('Invalid rule entered.')
     }
 }
 
