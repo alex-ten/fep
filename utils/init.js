@@ -1,14 +1,44 @@
-// Initialize categorization rule 1D
-function init1d1() {
-    let dimensions = shuffle([randInt(6) + 1, null])
-    let relevant = [false, false]
-    relevant[dimensions.indexOf(null)] = true
-    return [dimensions, relevant]
+// Rule defenition 1d1
+function init_1d1() {
+    return {
+        label: '1d1',
+        nVarDims: 1,
+        exclude: (x) => {return x[1] != 3},
+    }
 }
 
-// Initialize categorization rule i1D
-function init2d1() {
-    return [[null, null], shuffle([false, true])]
+// Rule defenition 2d1
+function init_2d1() {
+    // return [[null, null], shuffle([false, true])]
+    return {
+        label: '2d1',
+        nVarDims: 2,
+    }
+}
+
+// Rule defenition 2d2
+function init_2d2() {
+    return {
+        label: '2d2',
+        nVarDims: 2,
+    }
+}
+
+// Rule defenition 2d0
+function init_2d0() {
+    return {
+        label: '2d0',
+        nVarDims: 2
+    }
+}
+
+// Rule defenition feature integration (fi)
+function init_fi() {
+    return {
+        label: 'fi',
+        nVarDims: 2,
+        exclude: (x) => {return x[0]+x[1] == 7},
+    }
 }
 
 function initSchedule(blockSize, maxTrials, actsOrder, shuffleOrder) {
@@ -52,18 +82,24 @@ function initSession() {
 
     // Create instructions for activity rules
     const actRules = {
-        '1d1': init1d1(),                       // 1 variable dimension; 1 relevant
-        '2d1': [[null, null], [true, false]],      // 2 variable dimensions; 1 relevant
-        '2d2': [[null, null], [true, true]],    // 2 variable dimensions; 2 relevant
-        '2d0': [[null, null], [false, false]]   // 2 variable dumensions; 0 relevant
+        '1d1'  : init_1d1(),
+        '2d1'  : init_2d1(),
+        '2d2'  : init_2d2(),
+        '2d0'  : init_2d0(),
+        'fi'   : init_fi()
     };
 
+    // For rules included in JATOS study JSON input, create a rule definitions and add them to a list
+    // Each rule definition is a list of elements with the following structure: [dimension_variability, dimension_relevance, rule_label]
+    // Note that rule_label is added by concat below
     let rulesIncluded = [];
     jatos.studyJsonInput.rulesIncluded.forEach((element) => {
-        rulesIncluded.push(actRules[element].concat([element]))
+        rulesIncluded.push(actRules[element])
     })
 
-    // Shuffle one of the arrays
+    // Shuffle rules to randomize their assignment to families
+    // Note: this only works for a single session right now 
+    // (if the participant comes back on a different session, the assignment will be randomized anew)
     shuffle(rulesIncluded)
 
     // Create a mapping from stimulus family labels to activity labels
