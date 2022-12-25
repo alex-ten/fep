@@ -10,16 +10,12 @@ function getNextFeatures() {
 }
 
 // Generate stimulus features based on array that specifies whether a dimension is variable or fixed at a given value
-function genStimFeatures(dimVariance) {
+function getStimFeatures(nVarDims) {
     if (jatos.studySessionData.currentStage.epochs) {
         return getNextFeatures();
     } else {
-        let features = [...dimVariance];
-        for (let i = 0; i < dimVariance.length; i++) {
-            if (dimVariance[i] === null) {
-                features[i] = randInt(6) + 1;
-            }
-        }
+        // TODO: this always returns 1 or two random features (no exclusion implemented)
+        let features = nVarDims == 1 ? [3, randInt(6) + 1,] : [randInt(6) + 1, randInt(6) + 1]
         return features;
     }
 }
@@ -30,7 +26,7 @@ function getRelevantFeatures(features, relevance) {
 }
 
 function xnor(x, y) {
-    return(x && y) || (! x && ! y);
+    return (x && y) || (! x && ! y);
 }
 
 // Get stimulus category (0 or 1) based on the values of relevant features
