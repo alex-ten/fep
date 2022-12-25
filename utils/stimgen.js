@@ -33,17 +33,16 @@ function xnor(x, y) {
 // if relDims is [], stimulus cateogry is determined randomly
 // if relDims is [v], stimulus category is 1 if the v < 3
 // if relDims is [v, w], stimulus category is 1 if (v < 3 AND w < 3) OR (v > 3 AND w > 3)
-function getStimCat(relDims) {
-    if (relDims.length === 0) { // R rule: category is random
-        return randInt(2);
-    } else if (relDims.length == 1) { // 1D and i1D rule: category based on 1 relevant dim
-        return relDims[0] < 4
-            ? 1
-            : 0;
-    } else if (relDims.length == 2) {
-        return xnor(relDims[0] < 4, relDims[1] < 4)
-            ? 1
-            : 0;
+function getStimCat(features, rule) {
+    switch (rule) {
+        case '1d1':
+            return features[0] < 4 ? 1 : 0
+        case '2d1':
+            return features[0] < 4 ? 1 : 0
+        case '2d2':
+            return xnor(features[0] < 4, features[1] < 4) ? 1 : 0
+        case '2d0':
+            return randInt(2)
     }
 }
 
