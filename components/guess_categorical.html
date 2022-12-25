@@ -22,7 +22,7 @@
         <div class="hidden">
             <div id="grid">
                 <div id="tcount">Trials completed: </div>
-                <div id="prompt"><h1>What would this monster like to eat?</h1></div>
+                <div id="prompt"><h1>What does this monster like to eat?</h1></div>
                 <div id="stimulus-flex-row">
                     <div class="side-block" id="feedback-block">
                         <img id="correct-image" src="assets/stimuli/feedback/yum.png">
@@ -47,25 +47,24 @@
             
             // Generate stimulus parameters
             const famChoiceInd = parseInt(jatos.studySessionData.choice);
-            const [dimVariance, dimRelevance, ruleLabel] = jatos.studySessionData.famRuleMap[famChoiceInd];
-            const stimulusFeatures = genStimFeatures(dimVariance);
-            const relevantFeatures = getRelevantFeatures(stimulusFeatures, dimRelevance);
-            const stimulusCategory = getStimCat(relevantFeatures); // Either 0 or 1, depending on the rule and relevant features
-            const stimulusRule = dimRelevance;
+            const rule = jatos.studySessionData.famRuleMap[famChoiceInd];
+            const stimFeatures = getStimFeatures(rule.nVarDims);
+            const stimCategory = getStimCat(stimFeatures, rule.label); // Either 0 or 1, depending on the rule and relevant features
             
             // Add stimulus image
             $("#feedback-block").after(
                 $("<img>", {
                     id: "stimulus",
-                    src: `assets/stimuli/monsters/f${famChoiceInd}_${stimulusFeatures[0]}_${stimulusFeatures[1]}.png`,
+                    src: `assets/stimuli/monsters/f${famChoiceInd}_${stimFeatures[0]}_${stimFeatures[1]}.png`,
                     draggable: false,
                 })
             );
 
             // Add response images
             const responses = jatos.studySessionData.famCatMap[famChoiceInd];
+            const correctResponse = responses[stimCategory];
             const shuffledResponses = shuffle([...responses]);
-            const correctResponse = responses[stimulusCategory];
+            
             for (i = 0; i < responses.length; i++) {
                 $("#input-cell").prepend(
                     $("<input>", {
@@ -85,8 +84,8 @@
             data = {
                 correctResponse: correctResponse,
                 famChoiceInd: famChoiceInd,
-                stimFeatures: stimulusFeatures,
-                ruleLabel: ruleLabel,
+                stimFeatures: stimFeatures,
+                ruleLabel: rule.label,
                 responseOrder: shuffledResponses,
                 stimOnset: Date.now()
             }
