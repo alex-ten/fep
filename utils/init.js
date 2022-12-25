@@ -108,7 +108,7 @@ function initSession() {
         famRuleMap[element] = rulesIncluded[index]
     });
     jatos.studySessionData["famRuleMap"] = famRuleMap
-
+   
     // // Create a mapping from stimulus family labels to the respective category sets
     // let famCatMap = {};
     // famCodes.forEach((element, index) => {
@@ -136,10 +136,6 @@ function initNextStage() {
     jatos.studyJsonInput.famsIncluded.forEach((element) => {
         jatos.studySessionData.currentStage.trialsPerFam[element] = 0
     })
-    
-    if (jatos.studySessionData.currentStage.epochs) {
-        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studyJsonInput.famsIncluded)
-    }
 
     const sp = jatos.studySessionData.currentStage.scheduleParams; // sp = schedule parameters
     if (sp !== null) {
@@ -152,6 +148,11 @@ function initNextStage() {
     } else {
         jatos.studySessionData.currentStage["schedule"] = null
     }
+
+    if (jatos.studySessionData.currentStage.epochs) {
+        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studySessionData.famRuleMap, blockSize)
+    }
+
     return stage;
 }
 
