@@ -3,9 +3,6 @@ function getNextFeatures() {
     const count = jatos.studySessionData.currentStage.trialsPerFam[choice];
     const epoch = jatos.studySessionData.currentStage.epochs[choice];
     const ind = count % epoch.length
-    if (ind == 0 && jatos.studySessionData.popChoice) {
-        jatos.studySessionData.currentStage.epochs[choice] = shuffle(epoch)
-    }
     return jatos.studySessionData.currentStage.epochs[choice][ind];
 }
 
@@ -65,8 +62,8 @@ function genEpochs(famRuleMap, blockSize) {
                     } else {
                         if (!rule.exclude(vals)) {
                             epoch.push(vals)
-            }
-        }
+                        }
+                    }
                 }
             }
             epochs = epochs.concat(shuffle(epoch))
