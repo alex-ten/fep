@@ -138,7 +138,9 @@ function initNextStage() {
     })
 
     const sp = jatos.studySessionData.currentStage.scheduleParams; // sp = schedule parameters
+    let epochsLength = jatos.studySessionData.currentStage.maxTrials
     if (sp !== null) {
+        epochsLength = sp.blockSize
         jatos.studySessionData.currentStage["schedule"] = initSchedule(
             blockSize = sp.blockSize,
             maxTrials = jatos.studySessionData.currentStage.maxTrials,
@@ -150,7 +152,7 @@ function initNextStage() {
     }
 
     if (jatos.studySessionData.currentStage.epochs) {
-        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studySessionData.famRuleMap, blockSize)
+        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studySessionData.famRuleMap, epochsLength)
     }
 
     return stage;
