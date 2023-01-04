@@ -12,7 +12,7 @@ function getStimFeatures(nVarDims) {
         return getNextFeatures();
     } else {
         // TODO: this always returns 1 or two random features (no exclusion implemented)
-        let features = nVarDims == 1 ? [3, randInt(6) + 1,] : [randInt(6) + 1, randInt(6) + 1]
+        let features = nVarDims == 1 ? [3, randInt(6) + 1] : [randInt(6) + 1, randInt(6) + 1]
         return features;
     }
 }
