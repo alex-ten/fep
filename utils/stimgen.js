@@ -11,8 +11,8 @@ function getStimFeatures(nVarDims) {
     if (jatos.studySessionData.currentStage.epochs) {
         return getNextFeatures();
     } else {
-        // TODO: this always returns 1 or two random features (no exclusion implemented)
-        let features = nVarDims == 1 ? [3, randInt(6) + 1] : [randInt(6) + 1, randInt(6) + 1]
+        // TODO: this always returns 1 or 2 random features (no exclusion implemented)
+        let features = (nVarDims == 1) ? [3, randInt(6) + 1] : [randInt(6) + 1, randInt(6) + 1]
         return features;
     }
 }

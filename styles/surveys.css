@@ -1,0 +1,56 @@
+/* Please define your custom styles here */
+body {
+  background-color: linen
+}
+
+img.thumbnail {
+  max-height: 80px;
+}
+
+/* Radio buttons */ 
+#page-form .page-item-table td input[type="radio"]:hover, #page-form .page-item-table td input[type="checkbox"]:hover { 
+  margin: 4px 0 10px; 
+  -webkit-transition: transform .1s ease-in-out; 
+  -moz-transition: transform .1s ease-in-out; 
+  -o-transition: transform .1s ease-in-out; 
+  transition: transform .1s ease-in-out; 
+  -webkit-transform: scale(3); /* Chrome, Safari, Opera */ 
+  -ms-transform: scale(3); /* IE 9 */ 
+  transform: scale(3); 
+}
+
+thead.sticky-top > tr > th.sticky-top {
+  background-color: linen;
+}
+
+footer.content-horizontal-right.content-vertical-center {
+  background-color: linen;
+  display: flex;
+  justify-content: center;
+}
+
+button[type="submit"] {
+  display: inline-block;
+  height: 2em;
+  width: fit-content;
+  justify-self: center;
+  align-self: end;
+  font-size: inherit;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  box-shadow: 0 9px #999;
+  border: none;
+  border-radius: 15px;
+  background-color: #4CAF50;
+  cursor: pointer;
+  position: relative;
+  padding: .2em 1em;
+}
+
+button[type="submit"]:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

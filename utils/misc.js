@@ -40,10 +40,16 @@ function addCustomAbortButton() {
 }
 
 function showIntro() {
-    jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.intro))
+    const handle = jatos.studySessionData.currentStage.intro
+    const position = getComponentPos(handle)
+    jatos.startComponentByPos(position)
 }
 
 function beginStage() {
     jatos.studySessionData.currentStage.intro = false;
     jatos.startComponentByPos(getComponentPos(jatos.studySessionData.currentStage.component))
+}
+
+function test() {
+    alert('Testing....')
 }

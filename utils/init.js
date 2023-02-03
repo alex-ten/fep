@@ -69,17 +69,6 @@ function initSession() {
     // Create a list of coded labels for each stimulus family
     let famCodes = jatos.studyJsonInput.famsIncluded
 
-    // // Create a list of codes for category labels (just numbers from 0 to 17)
-    // let catCodes = [...Array(18).keys()];
-
-    // // Randomly sample unique and nonoverlapping category sets for each stimulus family
-    // shuffle(catCodes)
-    // let k = 2;
-    // let catSets = [];
-    // for (let i = 0; i < k *famCodes.length; i += k) {
-    //     catSets.push([catCodes[i], catCodes[i+1]])
-    // };
-
     // Create instructions for activity rules
     const actRules = {
         '1d1'  : init_1d1(),
@@ -90,7 +79,7 @@ function initSession() {
     };
 
     // For rules included in JATOS study JSON input, create a rule definitions and add them to a list
-    // Each rule definition is a list of elements with the following structure: [dimension_variability, dimension_relevance, rule_label]
+    // Each rule definition is a list of elements with the following structure: [dimension_variability, dimension_relevance, rule_label ]
     // Note that rule_label is added by concat below
     let rulesIncluded = [];
     jatos.studyJsonInput.rulesIncluded.forEach((element) => {
@@ -100,7 +89,9 @@ function initSession() {
     // Shuffle rules to randomize their assignment to families
     // Note: this only works for a single session right now 
     // (if the participant comes back on a different session, the assignment will be randomized anew)
-    shuffle(rulesIncluded)
+    if (jatos.studyJsonInput.randomizeRuleAssignment) {
+        shuffle(rulesIncluded)
+    }
 
     // Create a mapping from stimulus family labels to activity labels
     let famRuleMap = {};
@@ -108,53 +99,66 @@ function initSession() {
         famRuleMap[element] = rulesIncluded[index]
     });
     jatos.studySessionData["famRuleMap"] = famRuleMap
-   
-    // // Create a mapping from stimulus family labels to the respective category sets
-    // let famCatMap = {};
-    // famCodes.forEach((element, index) => {
-    //     famCatMap[element] = catSets[index]
-    // });
-    // jatos.studySessionData["famCatMap"] = famCatMap
-    jatos.studySessionData["famCatMap"] = {
-        1: [0, 2],
-        2: [1, 4],
-        3: [3, 5],
-        4: [6, 7],
+    
+    // Create a mapping from stimulus family labels to the respective category sets
+    if (jatos.studyJsonInput.randomizeCategoriesAssignment) {
+        // Create a list of codes for category labels (just numbers from 0 to 17)
+        let catCodes = [...Array(18).keys()];
+
+        // Randomly sample unique and nonoverlapping category sets for each stimulus family
+        shuffle(catCodes)
+        let k = 2;
+        let catSets = [];
+        for (let i = 0; i < k *famCodes.length; i += k) {
+            catSets.push([catCodes[i], catCodes[i+1]])
+        };
+        let famCatMap = {};
+        famCodes.forEach((element, index) => {
+            famCatMap[element] = catSets[index]
+        });
+        jatos.studySessionData["famCatMap"] = famCatMap
+    } else {
+        jatos.studySessionData["famCatMap"] = {
+            1: [0, 2],
+            2: [1, 4],
+            3: [3, 5],
+            4: [6, 7],
+        }
     }
-
-
+ 
     jatos.studySessionData["taskStack"] = [...jatos.studyJsonInput.taskStack]
     jatos.studySessionData["totalTrialsComplete"] = 0
 }
 
 function initNextStage() {
     const stage = jatos.studySessionData.taskStack.shift()
-    jatos.studySessionData["popChoice"] = true
     jatos.studySessionData["currentStage"] = stage
-    jatos.studySessionData.currentStage["trialsComplete"] = 0
-    jatos.studySessionData.currentStage["trialsPerFam"] = {}
-    jatos.studyJsonInput.famsIncluded.forEach((element) => {
-        jatos.studySessionData.currentStage.trialsPerFam[element] = 0
-    })
+    if (stage.type == "monsters") {
+        jatos.studySessionData["popChoice"] = true
+        jatos.studySessionData.currentStage["trialsComplete"] = 0
+        jatos.studySessionData.currentStage["trialsPerFam"] = {}
+        jatos.studyJsonInput.famsIncluded.forEach((element) => {
+            jatos.studySessionData.currentStage.trialsPerFam[element] = 0
+        })
 
-    const sp = jatos.studySessionData.currentStage.scheduleParams; // sp = schedule parameters
-    let epochsLength = jatos.studySessionData.currentStage.maxTrials
-    if (sp !== null) {
-        epochsLength = sp.blockSize
-        jatos.studySessionData.currentStage["schedule"] = initSchedule(
-            blockSize = sp.blockSize,
-            maxTrials = jatos.studySessionData.currentStage.maxTrials,
-            actsOrder = sp.actsOrder,
-            shuffleOrder = sp.shuffleOrder
-        )
-    } else {
-        jatos.studySessionData.currentStage["schedule"] = null
+        const sp = jatos.studySessionData.currentStage.scheduleParams; // sp = schedule parameters
+        let epochsLength = jatos.studySessionData.currentStage.maxTrials
+        if (sp !== null) {
+            epochsLength = sp.blockSize
+            jatos.studySessionData.currentStage["schedule"] = initSchedule(
+                blockSize = sp.blockSize,
+                maxTrials = jatos.studySessionData.currentStage.maxTrials,
+                actsOrder = sp.actsOrder,
+                shuffleOrder = sp.shuffleOrder
+            )
+        } else {
+            jatos.studySessionData.currentStage["schedule"] = null
+        }
+
+        if (jatos.studySessionData.currentStage.epochs) {
+            jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studySessionData.famRuleMap, sp.epochSize)
+        }
     }
-
-    if (jatos.studySessionData.currentStage.epochs) {
-        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studySessionData.famRuleMap, sp.epochSize)
-    }
-
     return stage;
 }
 
