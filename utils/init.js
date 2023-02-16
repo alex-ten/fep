@@ -152,7 +152,7 @@ function initNextStage() {
     }
 
     if (jatos.studySessionData.currentStage.epochs) {
-        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studySessionData.famRuleMap, sp.epochSize)
+        jatos.studySessionData.currentStage.epochs = genEpochs(jatos.studySessionData.famRuleMap, jatos.studySessionData.currentStage.epochSize)
     }
 
     return stage;
